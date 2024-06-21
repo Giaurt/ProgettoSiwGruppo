@@ -1,0 +1,5 @@
+package com.uniroma3.prog.model;
+
+public class Recensione {
+
+}

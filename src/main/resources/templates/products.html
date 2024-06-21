@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>TrueFeedback</title>
+</head>
+<body>
+	  <div>
+		  <a>TrueFeedback</a>
+  </div>
+  	<br>
+  	<br>
+  	<br>
+
+  <div th:if="${products.isEmpty()}">Non ci sono prodotti nel sistema</div>
+  <em>
+	  <li>
+      <a th:each="product : ${products}" th:href="@{'/product' + '/' + ${product.id}}">
+			  <img th:src=${product.urlImage} />
+        <div th:text="${product.nome}">Up! (2000)</div>
+	  </a>
+	  </li>
+    </em>
+</body>
+</html>

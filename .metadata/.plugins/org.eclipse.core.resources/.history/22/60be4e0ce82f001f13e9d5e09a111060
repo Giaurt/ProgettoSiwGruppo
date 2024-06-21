@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TrueFeedback</title>
+</head>
+<body>
+	  <div>
+		  <a class="title">SiwFood</a>
+  </div>
+  	<br>
+  	<br>
+  	<br>
+  <div class="intest">
+	    <a class="header">Esplora Centinaia Di Ricette!</a>
+  </div>
+
+  <div th:if="${ricette.isEmpty()}">Non ci sono ricette nel sistema</div>
+  <em>
+	  <li class = "container">
+      <a class="flex-item"th:each="ricetta : ${ricette}" th:href="@{'/ricetta' + '/' + ${ricetta.id}}">
+			  <img th:src=${ricetta.urlImage} />
+        <div class="ricetta-text" th:text="${ricetta.nome}">Up! (2000)</div>
+	  </a>
+	  </li>
+    </em>
+</body>
+</html>

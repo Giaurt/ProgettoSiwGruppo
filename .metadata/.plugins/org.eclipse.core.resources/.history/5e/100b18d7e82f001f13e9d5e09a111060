@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TrueFeedback</title>
+</head>
+<body>
+	  <div>
+		  <a>TrueFeedback</a>
+  </div>
+  	<br>
+  	<br>
+  	<br>
+
+  <div th:if="${products.isEmpty()}">Non ci sono prodotti nel sistema</div>
+  <em>
+	  <li>
+      <a th:each="ricetta : ${ricette}" th:href="@{'/ricetta' + '/' + ${ricetta.id}}">
+			  <img th:src=${ricetta.urlImage} />
+        <div class="ricetta-text" th:text="${ricetta.nome}">Up! (2000)</div>
+	  </a>
+	  </li>
+    </em>
+</body>
+</html>

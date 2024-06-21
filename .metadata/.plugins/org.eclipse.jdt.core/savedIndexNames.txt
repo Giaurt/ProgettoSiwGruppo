@@ -1,0 +1,8 @@
+INDEX VERSION 1.134+D:\ProgettoSiwGruppo\.metadata\.plugins\org.eclipse.jdt.core
+1865797976.index
+1466136628.index
+2005602872.index
+2651002131.index
+3902458222.index
+4177220154.index
+1873992550.index
