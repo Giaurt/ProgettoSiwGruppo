@@ -17,7 +17,7 @@ public class ProductController {
 	public String getProduct(@PathVariable("id")Long id, Model model) {
 		model.addAttribute("product", this.productService.findById(id));
 		model.addAttribute("products", this.productService.findAll());
-		return "product.heml";
+		return "product.html";
 	}
 	
 	@GetMapping("/products")

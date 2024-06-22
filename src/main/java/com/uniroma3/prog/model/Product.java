@@ -15,11 +15,11 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String nome;
-	private String descrizione;
+	private String name;
+	private String description;
 	private String urlImage;
 	@OneToMany
-	private List<Review> recensioni;
+	private List<Review> review;
 	
 	public Long getId() {
 		return id;
@@ -27,17 +27,17 @@ public class Product {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getDescrizione() {
-		return descrizione;
+	public String getDescription() {
+		return description;
 	}
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	public String getUrlImage() {
 		return urlImage;
@@ -45,11 +45,11 @@ public class Product {
 	public void setUrlImage(String urlImage) {
 		this.urlImage = urlImage;
 	}
-	public List<Review> getRecensioni() {
-		return recensioni;
+	public List<Review> getReview() {
+		return review;
 	}
-	public void setRecensioni(List<Review> recensioni) {
-		this.recensioni = recensioni;
+	public void setReview(List<Review> review) {
+		this.review = review;
 	}
 	@Override
 	public int hashCode() {

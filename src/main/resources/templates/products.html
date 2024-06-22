@@ -18,7 +18,7 @@
 	  <li>
       <a th:each="product : ${products}" th:href="@{'/product' + '/' + ${product.id}}">
 			  <img th:src=${product.urlImage} />
-        <div th:text="${product.nome}">Up! (2000)</div>
+        <div th:text="${product.name}">Up! (2000)</div>
 	  </a>
 	  </li>
     </em>

@@ -826,3 +826,6 @@ Caused by: java.lang.Exception: File not found: D:\ProgettoSiwGruppo\ProgettoSiw
 2024-06-21 18:58:39,596 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 4 resources from src\main\resources to target\classes
 2024-06-21 18:58:39,619 [Worker-0: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory D:\ProgettoSiwGruppo\ProgettoSiwGruppo\src\test\resources
 2024-06-21 18:58:43,104 [Worker-12: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.uniroma3:ProgettoSiwGruppo:0.0.1-SNAPSHOT @ D:\ProgettoSiwGruppo\ProgettoSiwGruppo\pom.xml.
+2024-06-21 19:10:48,814 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-06-21 19:11:58,708 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-06-21 19:15:20,696 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
