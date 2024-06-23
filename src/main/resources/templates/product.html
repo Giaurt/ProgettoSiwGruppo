@@ -7,6 +7,7 @@
 	<body>
 		<div th:if="${product}">
 			<h1 th:text="${product.name}"></h1>
+			<img th:src=${product.urlImage}></img>
 		</div>
 	</body>
 </html>

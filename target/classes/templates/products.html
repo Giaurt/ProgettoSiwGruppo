@@ -3,11 +3,15 @@
 <head>
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="/css/products.css">
   <title>TrueFeedback</title>
 </head>
 <body>
+	<div class="menu">
+		<a class="title">TrueFeedback</a>
+	</div>
 	  <div>
-		  <a>TrueFeedback</a>
+		  
   </div>
   	<br>
   	<br>
@@ -15,10 +19,11 @@
 
   <div th:if="${products.isEmpty()}">Non ci sono prodotti nel sistema</div>
   <em>
-	  <li>
-      <a th:each="product : ${products}" th:href="@{'/product' + '/' + ${product.id}}">
+	  <li class="container">
+      <a class="flex-item" th:each="product : ${products}" th:href="@{'/product' + '/' + ${product.id}}">
+		  <div class="shadow"></div>
 			  <img th:src=${product.urlImage} />
-        <div th:text="${product.name}">Up! (2000)</div>
+        <div class="prod-name" th:text="${product.name}">Up! (2000)</div>
 	  </a>
 	  </li>
     </em>
