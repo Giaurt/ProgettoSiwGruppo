@@ -1,7 +1,8 @@
-package com.uniroma3.prog.model;
+package com.uniroma3.prog.review;
 
 import java.util.Objects;
 
+import com.uniroma3.prog.product.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

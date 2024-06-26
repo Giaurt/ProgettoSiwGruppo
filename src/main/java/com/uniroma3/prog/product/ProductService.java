@@ -1,10 +1,7 @@
-package com.uniroma3.prog.service;
+package com.uniroma3.prog.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.uniroma3.prog.model.Product;
-import com.uniroma3.prog.repository.ProductRepository;
 
 @Service
 public class ProductService {

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.uniroma3.prog.model.Prodotto;
-import com.uniroma3.prog.repository.ProductRepository;
+import com.uniroma3.prog.product.ProductRepository;
 
 @Service
 public class ProductService {

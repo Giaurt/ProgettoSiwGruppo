@@ -7,11 +7,11 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.springframework.data.repository.CrudRepository"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-    <fullyQualifiedTypeName name="com.uniroma3.prog.repository.ProductRepository"/>
+    <fullyQualifiedTypeName name="com.uniroma3.prog.product.ProductRepository"/>
     <fullyQualifiedTypeName name="com.uniroma3.prog.model.Prodotto"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="com.uniroma3.prog.service.ProductService"/>
+    <fullyQualifiedTypeName name="com.uniroma3.prog.product.ProductService"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
