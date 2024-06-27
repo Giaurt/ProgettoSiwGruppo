@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        TrueFeedback - Registrazione conclusa
+    </title>
+</head>
+
+<body>
+<a href="/">GO BACK</a>
+
+<header>
+    <div th:if="${userDetails}">
+        <span th:text="${userDetails.username}"></span>
+        <a href="/logout">Logout</a>
+    </div>
+    <div th:unless="${user}">
+        <a href="/login">Login</a>
+    </div>
+</header>
+
+<div></div>
+<h1>Congratulazioni ti sei registrato!</h1>
+<div>
+    <span>Nome: </span>
+    <span th:text="${user.name}"></span>
+</div>
+<div>
+    <span>Cognome: </span>
+    <span th:text="${user.surname}"></span>
+</div>
+<div>
+    <span>Email: </span>
+    <span th:text="${user.email}"></span>
+</div>
+</body>
+</html>

@@ -25,4 +25,10 @@ public class ProductController {
 		model.addAttribute("products", this.productService.findAll());
 		return "products.html";
 	}
+	
+	@GetMapping("/tools")
+	public String showTools(Model model) {
+		model.addAttribute("products", this.productService.findAll());
+		return "tools.html";
+	}
 }

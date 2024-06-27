@@ -1,13 +1,17 @@
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-  		<meta name="viewport" content="width=device-width">
-		<title>TrueFeedback</title>
-	</head>
-	<body>
-		<div th:if="${product}">
-			<h1 th:text="${product.name}"></h1>
-			<img th:src=${product.urlImage}></img>
-		</div>
-	</body>
+
+<head>
+	<title>
+		TrueFeedback
+	</title>
+</head>
+
+<body>
+<div th:if="${product}">
+	<h1 th:text="${product.name}"></h1>
+	<img th:src=${product.urlImage}></img>
+</div>
+</body>
+
 </html>
