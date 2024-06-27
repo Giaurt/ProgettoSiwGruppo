@@ -46,7 +46,7 @@ public class AuthConfiguration {
     public SecurityFilterChain configure(final HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .authorizeHttpRequests()
-                .requestMatchers(HttpMethod.GET, "/", "/index", "/register").permitAll()
+                .requestMatchers(HttpMethod.GET, "/", "/index", "/register", "/css/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/register", "/login").permitAll()
                 .anyRequest().authenticated()
                 .and().formLogin()

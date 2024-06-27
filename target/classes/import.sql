@@ -1,0 +1,2 @@
+insert into product(id, name, category, description, url_image) values(nextval('product_seq'), 'Trapano', 'tools', 'Ottimo trapano', 'https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg')
+insert into product(id, name, category, description, url_image) values(nextval('product_seq'), 'Kit brugole', 'tech', 'Ottimo kit brugole', 'https://shop.fratelliongaro.it/wp-content/uploads/2014/09/set-brugole.jpg')

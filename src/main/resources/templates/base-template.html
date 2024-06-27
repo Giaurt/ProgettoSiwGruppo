@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        TrueFeedback
+    </title>
+    <!--     FONT AWESOME     -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/main-style.css"/>
+    <link rel="stylesheet" href="/css/topbar.css"/>
+    <!-- TITLE FONT -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+ES+Deco:wght@100..400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="topbar">
+            <a href="/">
+                <div class="title">
+                    TrueFeedback
+                </div>
+            </a>
+            <div class="userInfo">
+                <div th:if="${userDetails}">
+                    <span th:text="${userDetails.username}"></span>
+                    <a href="/logout">Logout</a>
+                </div>
+                <div th:unless="${user}">
+                    <a href="/login">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

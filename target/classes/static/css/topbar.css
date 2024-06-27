@@ -1,0 +1,14 @@
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.title {
+    font-family: "Playwrite ES Deco", cursive;
+    font-size: 60px;
+}
+
+.userInfo {
+}
