@@ -11,7 +11,8 @@
 <body>
 <div th:if="${product}">
 	<h1 th:text="${product.name}"></h1>
-	<img th:src=${product.urlImage}></img>
+	<img th:src="@{'data:image/jpeg; base64, '+${product.image.generateBase64Image()}}"></img>
+	
 </div>
 </body>
 

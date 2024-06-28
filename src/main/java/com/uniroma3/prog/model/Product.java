@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Product {
@@ -18,7 +19,8 @@ public class Product {
 	private String name;
 	private String category;
 	private String description;
-	private String urlImage;
+	@OneToOne
+	private Image image;
 	@OneToMany
 	private List<Review> review;
 	
@@ -47,11 +49,12 @@ public class Product {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getUrlImage() {
-		return urlImage;
+	
+	public Image getImage() {
+		return image;
 	}
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
+	public void setImage(Image image) {
+		this.image = image;
 	}
 	public List<Review> getReview() {
 		return review;

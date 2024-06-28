@@ -5,7 +5,7 @@
 	<title>
 		TrueFeedback - Products
 	</title>
-	<link rel="stylesheet" href="/css/mainStyle.css"/>
+	<link rel="stylesheet" href="/css/products.css"/>
 </head>
 
 <body>
@@ -23,7 +23,6 @@
   <em>
 	  <li class="container">
       <a class="flex-item" th:each="product : ${products}" th:href="@{'/product' + '/' + ${product.id}}">
-		  <div th:if="${product.category == 'tools'"></div>
 		  <div class="shadow"></div>
 			  <img th:src=${product.urlImage} />
         <div class="prod-name" th:text="${product.name}">Up! (2000)</div>
