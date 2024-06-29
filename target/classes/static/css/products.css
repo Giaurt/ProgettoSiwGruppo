@@ -11,6 +11,7 @@
 }
 
 .products-grid {
+	background-color: #2d3250;
     border: 1px solid #ccc;
     display: flex;
     flex-wrap: wrap;

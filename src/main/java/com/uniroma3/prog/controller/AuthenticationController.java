@@ -3,6 +3,7 @@ package com.uniroma3.prog.controller;
 import com.uniroma3.prog.model.Credentials;
 import com.uniroma3.prog.model.User;
 import com.uniroma3.prog.service.CredentialsService;
+import com.uniroma3.prog.service.ProductService;
 import com.uniroma3.prog.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,14 @@ public class AuthenticationController {
 
     @Autowired
     private UserService userService;
+    
+    @Autowired 
+    private ProductService productService;
 
     @GetMapping(value = "/")
     public String index(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        model.addAttribute("products", this.productService.findAll());
         if (authentication instanceof AnonymousAuthenticationToken) {
             return "index";
         }

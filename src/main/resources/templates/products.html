@@ -24,7 +24,7 @@
 	  <li class="container">
       <a class="flex-item" th:each="product : ${products}" th:href="@{'/product' + '/' + ${product.id}}">
 		  <div class="shadow"></div>
-			  <img th:src=${product.urlImage} />
+			  <img th:src="@{'data:image/jpeg; base64, '+${product.image.generateBase64Image()}}"></img>
         <div class="prod-name" th:text="${product.name}">Up! (2000)</div>
 	  </a>
 	  </li>

@@ -1,4 +1,30 @@
 body {
-    background-color: #1a1a1a;
+    background-color: #424769;
     color: #ffffff;
+}
+.product-container{
+	display: flex;
+	justify-content: flex-start;
+	align-items: stretch;
+}
+.menu{
+	width: 400px;
+	height: 700px;
+	display: grid;
+	grid-template-rows:52px 52px 52px;
+	background-color: #676f9d;
+}
+.category-button{
+	height: 50px;
+	border: 2px solid #ccc;
+}
+.category-button:hover{
+	background-color: #424769;
+	border: 2px solid #ccc;
+}
+.category-text{
+	padding-top: 7px;
+	text-align: center;
+	font-size: 30px;
+	margin: auto;
 }

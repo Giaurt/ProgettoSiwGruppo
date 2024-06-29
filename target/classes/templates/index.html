@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playwrite+ES+Deco:wght@100..400&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="/css/index-menu-button.css"/>
 </head>
 
 <body>
@@ -50,47 +51,78 @@
             Filter Placeholder
         </div>
 
-        <div class="products-grid">
-            <div class="product">
-                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">
-                <h1>Name</h1>
-            </div>
-            <div class="product">
-                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">
-                <h1>Name</h1>
-            </div>
-            <div class="product">
-                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">
-                <h1>Name</h1>
-            </div>
-            <div class="product">
-                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">
-                <h1>Name</h1>
-            </div>
-            <div class="product">
-                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">
-                <h1>Name</h1>
-            </div>
-            <div class="product">
-                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">
-                <h1>Name</h1>
-            </div>
-            <div class="product">
-                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">
-                <h1>Name</h1>
-            </div>
-        </div>
+        <div class="product-container">
+			
+			<div class="menu">
+				
+			<div class="category-button">
+				<div class="category-text">
+					Attrezzi
+				</div>
+			</div>
+			<div class="category-button">
+				<div class="category-text">
+					Attrezzi
+				</div>
+			</div>
+			<div class="category-button">
+				<div class="category-text">
+					Attrezzi
+				</div>
+			</div>
+				
+				
+				
+			</div>
+			
+			
+			
+<!--			<div class="products-grid">-->
+<!--            <div class="product">-->
+<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
+<!--                <h1>Name</h1>-->
+<!--            </div>-->
+<!--            <div class="product">-->
+<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
+<!--                <h1>Name</h1>-->
+<!--            </div>-->
+<!--            <div class="product">-->
+<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
+<!--                <h1>Name</h1>-->
+<!--            </div>-->
+<!--            <div class="product">-->
+<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
+<!--                <h1>Name</h1>-->
+<!--            </div>-->
+<!--            <div class="product">-->
+<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
+<!--                <h1>Name</h1>-->
+<!--            </div>-->
+<!--            <div class="product">-->
+<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
+<!--                <h1>Name</h1>-->
+<!--            </div>-->
+<!--            <div class="product">-->
+<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
+<!--                <h1>Name</h1>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--		</div>-->
+        
+        
+        
 
-        <!-- <div class="products-grid" th:if="${products.isEmpty()}">
+         <div class="products-grid" th:if="${products.isEmpty()}">
             Non ci sono prodotti nel sistema
         </div>
         <div class="products-grid" th:each="product : ${products}">
             <div class="product" th:href="@{'/product/' + ${product.id}}">
-                <img th:src="${product.urlImage}" alt="Product Image"/>
+				<img th:src="@{'data:image/jpeg; base64, '+${product.image.generateBase64Image()}}"></img>
+<!--                <img th:src="${product.urlImage}" alt="Product Image"/>-->
                 <div class="prod-name" th:text="${product.name}">Name</div>
             </div>
-        </div> -->
+        </div> 
     </div>
-</body>
+</body>	
 
 </html>

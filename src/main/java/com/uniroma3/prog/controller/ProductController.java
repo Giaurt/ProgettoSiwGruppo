@@ -26,6 +26,8 @@ public class ProductController {
 	@Autowired ProductRepository productRepository;
 	@Autowired ImageRepository imageRepository;
 	
+
+	
 	@GetMapping("/product/{id}")
 	public String getProduct(@PathVariable("id")Long id, Model model) {
 		model.addAttribute("product", this.productService.findById(id));
