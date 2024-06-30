@@ -54,13 +54,13 @@ public class AuthenticationController {
 
     @GetMapping(value = "/success")
     public String defaultAfterLogin(Model model) {
-
+    	model.addAttribute("products", this.productService.findAll());
         UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
         if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
             return "admin/indexAdmin.html";
         }
-        return "index";
+        return "index.html";
     }
 
     @GetMapping(value = "/register")
@@ -83,7 +83,7 @@ public class AuthenticationController {
             credentials.setUser(user);
             credentialsService.saveCredentials(credentials);
             model.addAttribute("user", user);
-            return "registrationSuccessful";
+            return "loginForm";
         }
         return "register";
     }

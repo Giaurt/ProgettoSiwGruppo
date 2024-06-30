@@ -1,6 +1,23 @@
 body {
     background-color: #424769;
     color: #ffffff;
+    margin: 0px;
+}
+*{
+	text-decoration: none;
+}
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.title {
+/*    font-family: "Playwrite ES Deco";*/
+	padding: 20px 0px 30px 10px;
+    font-size: 60px;
+    color: #ffd52d;
 }
 .product-container{
 	display: flex;

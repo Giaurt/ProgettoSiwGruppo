@@ -5,15 +5,82 @@
 	<title>
 		TrueFeedback
 	</title>
-	<link rel="stylesheet" href="/css/mainStyle.css"/>
+	<link rel="stylesheet" href="/css/main-style.css"/>
+	<link rel="stylesheet" href="/css/product.css"/>
 </head>
 
 <body>
-<div th:if="${product}">
-	<h1 th:text="${product.name}"></h1>
-	<img th:src="@{'data:image/jpeg; base64, '+${product.image.generateBase64Image()}}"></img>
+	
+	    <div class="main-container">
+        <div class="topbar">
+            <a href="/">
+                <div class="title">
+                    TrueFeedback
+                </div>
+            </a>
+            <div class="userInfo">
+                <div th:if="${userDetails}">
+                    <span th:text="${userDetails.username}"></span>
+                    <a href="/logout">Logout</a>
+                </div>
+                <div th:unless="${userDetails}">
+                    <a href="/login">Login</a>
+                </div>
+            </div>
+        </div>
+	
+	<div class="product-container"></div>
+	
+	<div th:if="${product}">
+		
+		<div class="product-name" th:text="${product.name}"></div>
+		<div class="product-brand" >DeWALT</div>
+		
+		<div class="product-image">
+			<img class="image" th:src="@{'data:image/jpeg; base64, '+${product.image.generateBase64Image()}}"></img>
+			<div class="product-description" >
+			<div class="stars"> stelle</div>
+			<div class="text" th:text="${product.description}"></div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="review-container">Recensioni
+			
+			<div class="reviews">
+				
+				<div class="add-review" th:if="${userDetails}">
+					
+					
+					
+					<div class="review-add-box">
+						Aggiungi la tua recensione
+					</div>
+					
+				</div>
+				
+				<div th:unless="${userDetails}">
+                    <a href="/login">Devi fare il login per recensire un prodotto</a>
+                </div>
+						
+				
+			</div>
+			
+			
+			
+			
+		</div>
+	 
+	
+	
+
+	
 	
 </div>
+
+
+	    </div>
 </body>
 
 </html>

@@ -5,7 +5,7 @@
 	<title>
 		New Movie
 	</title>
-	<link rel="stylesheet" href="/css/stile.css" />
+	<link rel="stylesheet" href="/css/main-style.css" />
 </head>
 
 <body>
@@ -20,7 +20,7 @@
 <!--	</header>-->
 	
 <!--	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>-->
-	<h1>Aggiungi un film</h1>
+	<h1>Aggiungi un prodotto</h1>
 	<form th:action="@{/product}" method="POST" th:object="${product}"
 	enctype="multipart/form-data">
   		<div th:if="${#fields.hasGlobalErrors()}">
@@ -28,14 +28,19 @@
   		</div>
 		
 		<div>
-			<label>Titolo:</label> 
+			<label>Nome:</label> 
 			<span><input type="text" th:field="${product.name}" /></span>
 <!--		    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}">-->
 		    </span>
 		</div>
 
 		<div>
-			<label>Anno:</label> <span><input type="text" th:field="${product.category}" /></span>
+			<label>Categoria:</label> <span><input type="text" th:field="${product.category}" /></span>
+<!--		    <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}">-->
+		    </span>
+		</div>
+		<div>
+			<label>Descrizione</label> <span><input type="text" th:field="${product.description}" /></span>
 <!--		    <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}">-->
 		    </span>
 		</div>

@@ -47,113 +47,110 @@
 
 
 }
-
-
-
-
-
-
-
-.form_main {
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(255, 255, 255);
-  padding: 30px 30px 30px 30px;
-  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.062);
-  position: relative;
-  overflow: hidden;
+*{
+	text-decoration: none;
+}
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
 }
 
-.form_main::before {
-  position: absolute;
-  content: "";
-  width: 300px;
-  height: 300px;
-  background-color: rgb(209, 193, 255);
-  transform: rotate(45deg);
-  left: -180px;
-  bottom: 30px;
-  z-index: 1;
-  border-radius: 30px;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.082);
+.title {
+/*    font-family: "Playwrite ES Deco";*/
+	padding: 50px 0px 30px 0px;
+    font-size: 60px;
+    color: #ffd52d;
 }
 
-.heading {
-  font-size: 2em;
-  color: #2e2e2e;
-  font-weight: 700;
-  margin: 5px 0 10px 0;
-  z-index: 2;
+
+
+
+
+
+
+.card {
+ width: 300px;
+ padding: 1rem 1.2rem;
+ text-align: center;
+ background: #2a2b38;
+  box-shadow: 0 8px 24px 0 #1f2029;
 }
 
-.inputContainer {
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
+/*Inputs*/
+.field {
+ margin-top: .7rem;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 1em;
+ background-color: #1f2029;
+ border-radius: 4px;
+ padding: 1em 1em;
 }
 
-.inputIcon {
-  position: absolute;
-  left: 3px;
+.input-icon {
+ height: 1em;
+ width: 1em;
+ fill: #ffeba7;
 }
 
-.inputField {
-  width: 100%;
-  height: 30px;
-  background-color: transparent;
-  border: none;
-  border-bottom: 2px solid rgb(173, 173, 173);
-  margin: 10px 0;
-  color: black;
-  font-size: .8em;
-  font-weight: 500;
-  box-sizing: border-box;
-  padding-left: 30px;
+.input-field {
+ background: none;
+ border: none;
+ outline: none;
+ width: 100%;
+ color: #d3d3d3;
 }
 
-.inputField:focus {
-  outline: none;
-  border-bottom: 2px solid rgb(199, 114, 255);
+/*Text*/
+.card-title {
+ margin-bottom: 1rem;
+ font-size: 2em;
+ font-weight: 500;
+ color: #d3d3d3;
+ padding-bottom: 20px;
 }
 
-.inputField::placeholder {
-  color: rgb(80, 80, 80);
-  font-size: 1em;
-  font-weight: 500;
+/*Buttons*/
+.btn {
+ margin: 2rem;
+ border: none;
+ border-radius: 4px;
+ font-weight: bold;
+ font-size: 1em;
+ text-transform: uppercase;
+ padding: 0.9em 1.2em;
+ background-color: #ffd52d;
+ color: #5e6681;
+ box-shadow: 0 8px 24px 0 rgb(255 235 167 / 20%);
+ transition: all .3s ease-in-out;
 }
 
-#button {
-  z-index: 2;
-  position: relative;
-  width: 100%;
-  border: none;
-  background-color: rgb(162, 104, 255);
-  height: 30px;
-  color: white;
-  font-size: .8em;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin: 10px;
-  cursor: pointer;
+.btn-link {
+	padding: 8px 0px 8px 0px;
+ color: #f5f5f5;
+ display: block;
+ font-size: 1em;
+ transition: color .3s ease-out;
 }
 
-#button:hover {
-  background-color: rgb(126, 84, 255);
+/*Hover & focus*/
+.field input:focus::placeholder {
+ opacity: 0;
+ transition: opacity .3s;
 }
 
-.forgotLink {
-  z-index: 2;
-  font-size: .7em;
-  font-weight: 500;
-  color: rgb(44, 24, 128);
-  text-decoration: none;
-  padding: 8px 15px;
-  border-radius: 20px;
+.btn:hover {
+ background-color: #5e6681;
+ color: #ffd52d;
+ box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
 }
+
+.btn-link:hover {
+ color: #ffd52d;
+}
+
+
 

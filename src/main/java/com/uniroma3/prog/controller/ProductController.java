@@ -47,7 +47,7 @@ public class ProductController {
 		return "tools.html";
 	}
 	
-	@GetMapping(value="/formNewProduct")
+	@GetMapping(value="/newProduct")
 	public String formNewProduct(Model model) {
 		model.addAttribute("product", new Product());
 		return "formNewProduct.html";
