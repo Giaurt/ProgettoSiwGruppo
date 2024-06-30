@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		New Movie
+	</title>
+	<link rel="stylesheet" href="/css/main-style.css" />
+	<link rel="stylesheet" href="/css/formNewReview.css" />
+</head>
+
+<body>
+
+	<h1>Aggiungi una recensione </h1>
+	<form th:action="@{'/newReview/' + ${product.id}}" method="POST" th:object="${review}"></form>
+<!--  		<div th:if="${#fields.hasGlobalErrors()}">-->
+<!--  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> -->
+<!--  		</div>-->
+		
+		<div class="rating">
+            <input value="5" name="stars" id="star5" type="radio" th:field="${review.stars}">
+            <label for="star5">&#9733;</label>
+            <input value="4" name="stars" id="star4" type="radio" th:field="${review.stars}">
+            <label for="star4">&#9733;</label>
+            <input value="3" name="stars" id="star3" type="radio" th:field="${review.stars}">
+            <label for="star3">&#9733;</label>
+            <input value="2" name="stars" id="star2" type="radio" th:field="${review.stars}">
+            <label for="star2">&#9733;</label>
+            <input value="1" name="stars" id="star1" type="radio" th:field="${review.stars}">
+            <label for="star1">&#9733;</label>
+        </div>
+		
+		
+		<div>
+			<label>Nome:</label> 
+			<span><input type="text" th:field="${review.descrizione}" /></span>
+		</div>
+		
+		
+
+		
+		
+		<div>
+			<span><button type="submit">Conferma</button></span>
+		</div>
+	</form>
+</body>
+
+</html>

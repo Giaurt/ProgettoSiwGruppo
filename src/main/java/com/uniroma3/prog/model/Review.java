@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -17,10 +18,10 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nomeUtente;
-	//data?
-	//stelle?
+	private int stars;
 	private String descrizione;
 	@ManyToOne
+	 @JoinColumn(name = "product_id", referencedColumnName = "id")
 	private Product prodotto;
 	public Long getId() {
 		return id;
@@ -33,6 +34,13 @@ public class Review {
 	}
 	public void setNomeUtente(String nomeUtente) {
 		this.nomeUtente = nomeUtente;
+	}
+	
+	public int getStars() {
+		return stars;
+	}
+	public void setStars(int stars) {
+		this.stars = stars;
 	}
 	public String getDescrizione() {
 		return descrizione;

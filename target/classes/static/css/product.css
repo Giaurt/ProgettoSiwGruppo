@@ -42,15 +42,91 @@
 }
 .reviews{
 	width: 70%;
-	height: 300px;
+	height: 200px;
 	background-color: #676f9d;
 	font-size: 40px;
 }
 .add-review{
-	padding-top: 10px;
+	padding-top: 20px;
 }
 .review-add-box{
 	height: 150px;
 	background-color: #424769;
-	margin: 0px 10px 0px 10px;
+	margin: 0px 20px 0px 20px;
+	box-shadow: 0px 5px 20px #1f2029;
 }
+.users-review{
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	background-color: #676f9d;
+	padding-bottom: 30px;
+	margin: 0px 0px 90px 0px;
+}
+.flex-item{
+	background-color: #424769;
+	margin: 30px 20px 20px 20px;
+	word-wrap: break-word;
+	box-shadow: 0px 5px 20px #1f2029;
+}
+.flex-item:hover{
+	border: 3px solid #676f9d;;
+}
+.review-username{
+	font-size: 40px;
+	border-bottom: 3px solid #676f9d;
+}
+.review-content{
+	font-size: 25px;
+}
+
+
+
+/*----------------------------------RATING CSS----------------------------------*/
+
+.rating {
+  display: inline-block;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  float: right;
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.rating label:before {
+  content: '\2605';
+  font-size: 30px;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+  color: #6f00ff;
+  transition: color 0.3s;
+}
+
+
+/*.rating {*/
+/*    display: flex;*/
+/*    direction: row-reverse;*/
+/*    justify-content: center;*/
+/*    padding: 0;*/
+/*}*/
+/*.rating input {*/
+/*    display: none;*/
+/*}*/
+/*.rating label {*/
+/*    cursor: default;  Cambia il cursore per indicare che non è cliccabile */
+/*    width: 1em;*/
+/*    font-size: 3rem;*/
+/*    color: #FFD700;*/
+/*}*/
+/*.rating input:checked ~ label {*/
+/*    color: #FFD700;*/
+/*}*/

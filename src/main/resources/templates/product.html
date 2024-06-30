@@ -39,7 +39,27 @@
 		<div class="product-image">
 			<img class="image" th:src="@{'data:image/jpeg; base64, '+${product.image.generateBase64Image()}}"></img>
 			<div class="product-description" >
-			<div class="stars"> stelle</div>
+			<div class="stars">
+				
+				
+				<div class="rating">
+					  <input value="5" name="rating" id="star5" type="radio" th:checked="${averageRating == 5}" disabled>
+					  <label for="star5"></label>
+					  <input value="4" name="rating" id="star4" type="radio" th:checked="${averageRating == 4}" disabled>
+					  <label for="star4"></label>
+					  <input value="3" name="rating" id="star3" type="radio" th:checked="${averageRating == 3}" disabled>
+					  <label for="star3"></label>
+					  <input value="2" name="rating" id="star2" type="radio" th:checked="${averageRating == 2}" disabled>
+					  <label for="star2"></label>
+					  <input value="1" name="rating" id="star1" type="radio" th:checked="${averageRating == 1}" disabled>
+					  <label for="star1"></label>
+				</div>
+				
+				
+				
+				
+				
+			</div>
 			<div class="text" th:text="${product.description}"></div>
 			</div>
 		</div>
@@ -50,19 +70,80 @@
 			
 			<div class="reviews">
 				
-				<div class="add-review" th:if="${userDetails}">
+				<div class="add-review" >
 					
 					
 					
 					<div class="review-add-box">
+						
+						<div th:if="${userDetails}">
+						
 						Aggiungi la tua recensione
+						
+						<br>
+						
+							<a th:href="@{'/formNewReview/' + ${product.id}}">
+								<button class="btn" type="submit">Aggiungi recensione</button>
+							</a>
+							
+							
+						</div>
+										    
+		    				
+						<div th:unless="${userDetails}">
+                    		<a href="/login">Devi fare il login per recensire un prodotto</a>
+                		</div>
+						
+						
+						
 					</div>
 					
+					
+					
 				</div>
+					
+						
+						
+						<div style="padding-top: 40px" th:if="${product.review == null}">
+							Non ci sono ancora recensioni per questo prodotto
+						</div>
+
+<!--				<li class="users-review" th:each="review : ${product.review}">-->
+					<li class="users-review">
+					
+					
+					
+					<div class="flex-item" >
+						<div class="review-username">Carlo</div>
+						<div class="review-content"> bellissimo trapano giuro</div>
+						
+					</div>
+					
+					<div class="flex-item" >
+						<div class="review-username">Carlo</div>
+						<div class="review-content"> bellissimo trapano giuro</div>
+						
+					</div>
+					
+					<div class="flex-item" >
+						<div class="review-username">Carlo</div>
+						<div class="review-content"> bellissimo trapano giuro</div>
+						
+					</div>
+					
+					<div class="flex-item" >
+						<div class="review-username">Carlo</div>
+						<div class="review-content"> bellissimo trapano giuro</div>
+						
+					</div>
+					
+					
+					
+				</li>
+						
+						
+
 				
-				<div th:unless="${userDetails}">
-                    <a href="/login">Devi fare il login per recensire un prodotto</a>
-                </div>
 						
 				
 			</div>
@@ -71,16 +152,19 @@
 			
 			
 		</div>
+		
+		
+		
 	 
 	
 	
 
 	
 	
-</div>
+	</div>
 
 
-	    </div>
+    </div>
 </body>
 
 </html>
