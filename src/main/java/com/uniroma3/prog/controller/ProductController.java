@@ -32,10 +32,8 @@ public class ProductController {
 	@Autowired ProductRepository productRepository;
 	@Autowired ImageRepository imageRepository;
 	@Autowired ReviewRepository reviewRepository;
-	
 
-	
-	@GetMapping("/product/{id}")
+	@GetMapping("/products/{id}")
 	public String getProduct(@PathVariable("id")Long id, Model model) {
 		Product product = productService.findById(id);
 		List<Review> reviews = reviewRepository.findByProdotto(product);
@@ -87,14 +85,7 @@ public class ProductController {
 			return "formNewProduct.html"; 
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@GetMapping(value="/formNewReview/{id}")
 	public String formNewIngrediente(@PathVariable Long id,Model model) {
 		model.addAttribute("review", new Review());

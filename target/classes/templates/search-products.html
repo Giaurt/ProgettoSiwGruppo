@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        TrueFeedback
+    </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/search-products.css"/>
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="title">TrueFeedback</div>
+
+        <div class="search-container">
+            <div class="search-bar-box">
+                <form action="/search" method="GET">
+                    <input type="text" class="search-bar-input" name="txt" onmouseout="this.value = ''; this.blur();">
+                </form>
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="outside-box">
+            <div class="top">
+                <div class="n-results">
+                    <p><b>Prodotti trovati: <span th:text="${#lists.size(products)}" style="color: rgb(255, 150, 20)"></span></b></p>
+                </div>
+                <div class="filter">
+                    <h1>Placeholder filtro</h1>
+                </div>
+            </div>
+            <div class="products-container" th:each="product : ${products}">
+                <div class="product">
+                    <a th:href="@{'/products/' + ${product.id}}">
+                        <img th:src="@{'data:image/jpeg; base64, '+${product.image.generateBase64Image()}}" alt="Product Image">
+                        <div class="category-and-name">
+                            <b>
+                            <div class="product-category" th:text="${product.category}"></div>
+                            <div class="product-name" th:text="${product.name}"></div>
+                            </b>
+                        </div>
+                        <b>
+                            <div class="read-link">
+                                    <p>VEDI</p>
+                                    <i class="fas fa-angle-right"></i>
+                            </div>
+                        </b>
+                    </a>
+                </div>
+            </div>
+            <div class="related-products-container">
+                <div class="related">
+                    <h1>Placeholder for related</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -40,8 +40,8 @@
 
         <div class="search-container">
             <div class="box">
-                <form action="/search" method="GET">
-                    <input type="text" class="input" name="txt" onmouseout="this.value = ''; this.blur();">
+                <form th:action="@{/search}" method="POST">
+                    <input type="text" class="search-bar-input" name="keyword" onmouseout="this.value = ''; this.blur();">
                 </form>
                 <i class="fas fa-search"></i>
             </div>
@@ -116,7 +116,7 @@
             Non ci sono prodotti nel sistema
         </div>
         <div class="products-grid" th:each="product : ${products}">
-            <a th:href="@{'/product/' + ${product.id}}">
+            <a th:href="@{'/products/' + ${product.id}}">
 				<div class="product" >
 				<img th:src="@{'data:image/jpeg; base64, '+${product.image.generateBase64Image()}}"></img>
 <!--                <img th:src="${product.urlImage}" alt="Product Image"/>-->

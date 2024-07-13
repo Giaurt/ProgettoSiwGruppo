@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 
 import com.uniroma3.prog.model.Product;
 import com.uniroma3.prog.repository.ProductRepository;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -17,6 +20,11 @@ public class ProductService {
 	}
 	public Iterable<Product> findAll(){
 		return productRepository.findAll();
+	}
+
+	@Transactional(readOnly = true)
+	public List<Product> searchProduct(String keyword) {
+		return productRepository.findByNameContainingIgnoreCase(keyword);
 	}
 
 }
