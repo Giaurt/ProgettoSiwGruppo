@@ -9,6 +9,8 @@ import com.uniroma3.prog.model.Review;
 import com.uniroma3.prog.model.Product;
 import com.uniroma3.prog.repository.ReviewRepository;
 
+import jakarta.transaction.Transactional;
+
 
 @Service
 public class ReviewService {
@@ -17,13 +19,15 @@ public class ReviewService {
 	private ReviewRepository reviewRepository;
 	@Autowired
 	private ProductService productService;
-	
+	@Transactional
 	public Review findById(long id) {
 		return reviewRepository.findById(id).get();
 	}
+	@Transactional
 	public Iterable<Review> findAll(){
 		return reviewRepository.findAll();
 	}
+	@Transactional
 	 public List<Review> findReviewsByProduct(Long productId) {
 	        Product product = productService.findById(productId);
 

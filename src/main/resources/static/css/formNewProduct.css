@@ -1,0 +1,87 @@
+.main-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.card {
+ width: 300px;
+ padding: 1rem 1.2rem;
+ text-align: center;
+ background: #2a2b38;
+  box-shadow: 0 8px 24px 0 #1f2029;
+}
+
+/*Inputs*/
+.field {
+ margin-top: .7rem;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ gap: 1em;
+ background-color: #1f2029;
+ border-radius: 4px;
+ padding: 1em 1em;
+}
+
+.input-icon {
+ height: 1em;
+ width: 1em;
+ fill: #ffeba7;
+}
+
+.input-field {
+ background: none;
+ border: none;
+ outline: none;
+ width: 100%;
+ color: #d3d3d3;
+}
+
+/*Text*/
+.card-title {
+ margin-bottom: 1rem;
+ font-size: 2em;
+ font-weight: 500;
+ color: #d3d3d3;
+ padding-bottom: 20px;
+}
+
+/*Buttons*/
+.btn {
+ margin: 2rem;
+ border: none;
+ border-radius: 4px;
+ font-weight: bold;
+ font-size: 1em;
+ text-transform: uppercase;
+ padding: 0.9em 1.2em;
+ background-color: #ffd52d;
+ color: #5e6681;
+ box-shadow: 0 8px 24px 0 rgb(255 235 167 / 20%);
+ transition: all .3s ease-in-out;
+}
+
+.btn-link {
+	padding: 8px 0px 8px 0px;
+ color: #f5f5f5;
+ display: block;
+ font-size: 1em;
+ transition: color .3s ease-out;
+}
+
+/*Hover & focus*/
+.field input:focus::placeholder {
+ opacity: 0;
+ transition: opacity .3s;
+}
+
+.btn:hover {
+ background-color: #5e6681;
+ color: #ffd52d;
+ box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
+}
+
+.btn-link:hover {
+ color: #ffd52d;
+}

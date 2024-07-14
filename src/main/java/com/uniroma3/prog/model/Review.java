@@ -2,7 +2,9 @@ package com.uniroma3.prog.model;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -11,17 +13,20 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="review")
+//@Table(name="review")
 public class Review {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(nullable = false)
 	private String nomeUtente;
+	@Column(nullable = false)
 	private int stars;
+	@Column(nullable = false)
 	private String descrizione;
-	@ManyToOne
-	 @JoinColumn(name = "product_id", referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "prodotto_id")
 	private Product prodotto;
 	public Long getId() {
 		return id;

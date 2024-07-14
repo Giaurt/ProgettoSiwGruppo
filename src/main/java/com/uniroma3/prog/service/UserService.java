@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.uniroma3.prog.model.Review;
 import com.uniroma3.prog.model.User;
+import com.uniroma3.prog.repository.ReviewRepository;
 import com.uniroma3.prog.repository.UserRepository;
 
 import java.util.ArrayList;
@@ -16,6 +18,8 @@ public class UserService {
 
     @Autowired
     protected UserRepository userRepository;
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     @Transactional
     public User getUser(Long id) {
@@ -35,6 +39,17 @@ public class UserService {
         for(User user : iterable)
             result.add(user);
         return result;
+    }
+    @Transactional
+    public List<Review> getUserReview(String userName){
+    	List<Review> result = new ArrayList<>();
+    	Iterable<Review> iterable = this.reviewRepository.findAll();
+    	for(Review review : iterable) {
+    		if(review.getNomeUtente().equals(userName)) {
+    			result.add(review);
+    		}
+    	}
+    	return result;
     }
 
 }

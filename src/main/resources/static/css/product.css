@@ -58,16 +58,16 @@
 .users-review{
 	display: flex;
 	flex-direction: column;
-	justify-content: start;
+	justify-content: center;
 	background-color: #676f9d;
-	padding-bottom: 30px;
-	margin: 0px 0px 90px 0px;
+	margin: 20px 0px 10px 0px;
+	padding: 0px 10px 0px 10px;
 }
 .flex-item{
 	background-color: #424769;
-	margin: 30px 20px 20px 20px;
 	word-wrap: break-word;
 	box-shadow: 0px 5px 20px #1f2029;
+	margin: 10px 0px 20px 0px;
 }
 .flex-item:hover{
 	border: 3px solid #676f9d;;
@@ -78,6 +78,10 @@
 }
 .review-content{
 	font-size: 25px;
+}
+.username{
+	display: inline-block;
+	margin: 0px 0px 0px 10px;
 }
 
 
@@ -103,12 +107,19 @@
   content: '\2605';
   font-size: 30px;
 }
+.rating input:checked + label,
+.rating input:checked + label ~ label {
+  color: #6f00ff; /* Colore stelle selezionate */
+}
 
-.rating input:checked ~ label,
-.rating label:hover,
-.rating label:hover ~ label {
+/*.rating input:checked ~ label*/
+/*.rating label:hover,*/
+/*.rating label:hover ~ label {*/
+/*  color: #6f00ff;*/
+/*  transition: color 0.3s;*/
+/*}*/
+.star-filled {
   color: #6f00ff;
-  transition: color 0.3s;
 }
 
 
