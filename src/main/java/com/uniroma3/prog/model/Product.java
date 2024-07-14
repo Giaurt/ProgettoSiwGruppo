@@ -1,9 +1,21 @@
 package com.uniroma3.prog.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+<<<<<<< HEAD
 import jakarta.persistence.*;
+=======
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+>>>>>>> 1679799afc19388a83f21569d3440de085c2c3d1
 
 @Entity
 public class Product {
@@ -12,13 +24,18 @@ public class Product {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String name;
+<<<<<<< HEAD
 	@Enumerated(EnumType.STRING)
 	private Category category;
+=======
+	private String marca;
+	private String category;
+>>>>>>> 1679799afc19388a83f21569d3440de085c2c3d1
 	private String description;
 	@OneToOne
 	private Image image;
-	@OneToMany
-	private List<Review> review;
+	@OneToMany(mappedBy = "prodotto")
+	private List<Review> review = new ArrayList<>();
 	
 	public Long getId() {
 		return id;
@@ -32,8 +49,18 @@ public class Product {
 	public void setName(String name) {
 		this.name = name;
 	}
+<<<<<<< HEAD
 	
 	public Category getCategory() {
+=======
+	public String getMarca() {
+		return marca;
+	}
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+	public String getCategory() {
+>>>>>>> 1679799afc19388a83f21569d3440de085c2c3d1
 		return category;
 	}
 	public void setCategory(Category category) {

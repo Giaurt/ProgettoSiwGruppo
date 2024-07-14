@@ -5,6 +5,8 @@ import com.uniroma3.prog.model.User;
 import com.uniroma3.prog.service.CredentialsService;
 import com.uniroma3.prog.service.ProductService;
 import com.uniroma3.prog.service.UserService;
+
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -46,6 +48,21 @@ public class AuthenticationController {
         }
         return "index";
     }
+    
+    
+    @GetMapping(value = "/profile")
+    @Transactional
+    public String showProfile(Model model) {
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		User user = credentials.getUser();
+		model.addAttribute("credentials", credentials);
+		model.addAttribute("reviews", userService.getUserReview(credentials.getUsername()));
+		model.addAttribute("products", this.productService.findAll());
+		return "profile.html";
+	}
+    
+    
 
     @GetMapping(value = "/login")
     public String showLoginForm(Model model) {

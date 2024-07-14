@@ -10,15 +10,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
 @Service
 public class ProductService {
 	
 	@Autowired
 	private ProductRepository productRepository;
-	
+	@Transactional
 	public Product findById(long id) {
 		return productRepository.findById(id).get();
 	}
+	@Transactional
 	public Iterable<Product> findAll(){
 		return productRepository.findAll();
 	}
