@@ -57,7 +57,6 @@ public class AuthenticationController {
 		User user = credentials.getUser();
 		model.addAttribute("credentials", credentials);
 		model.addAttribute("reviews", userService.getUserReview(credentials.getUsername()));
-		model.addAttribute("products", this.productService.findAll());
 		return "profile.html";
 	}
 

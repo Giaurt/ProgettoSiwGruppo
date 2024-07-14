@@ -40,45 +40,24 @@
 			<img class="image" th:src="@{'data:image/jpeg; base64, '+${product.image.generateBase64Image()}}"></img>
 			<div class="product-description" >
 			<div class="stars">
-				
-				
-<!--							<div class="rating">-->
-<!--								<input value="1" name="rating" id="star1" type="radio" th:if="${averageRating == 1}" disabled>-->
-<!--							    <label for="star1"></label>-->
-<!--							    <input value="2" name="rating" id="star2" type="radio" th:if="${averageRating == 2}" disabled>-->
-<!--							    <label for="star2"></label>-->
-<!--							    <input value="3" name="rating" id="star3" type="radio" th:if="${averageRating == 3}" disabled>-->
-<!--							    <label for="star3"></label>-->
-<!--							    <input value="4" name="rating" id="star4" type="radio" th:if="${averageRating == 4}" disabled>-->
-<!--							    <label for="star4"></label>-->
-<!--							    <input value="5" name="rating" id="star5" type="radio" th:if="${averageRating == 5}" disabled>-->
-<!--							    <label for="star5"></label>-->
-<!--							</div>-->
+
 								<div class="rating" >
-								    <input value="1" name="rating" id="star1" type="radio" th:checked="${averageRating >= 1 && averageRating < 2}" disabled>
-								    <label for="star1"></label>
-								    <input value="2" name="rating" id="star2" type="radio" th:checked="${averageRating >= 2 && averageRating < 3}" disabled>
-								    <label for="star2"></label>
-								    <input value="3" name="rating" id="star3" type="radio" th:checked="${averageRating >= 3 && averageRating < 4}" disabled>
-								    <label for="star3"></label>
+									<input value="5" name="rating" id="star5" type="radio" th:checked="${averageRating == 5}" disabled>
+								    <label for="star5"></label>
 								    <input value="4" name="rating" id="star4" type="radio" th:checked="${averageRating >= 4 && averageRating < 5}" disabled>
 								    <label for="star4"></label>
-								    <input value="5" name="rating" id="star5" type="radio" th:checked="${averageRating == 5}" disabled>
-								    <label for="star5"></label>
+								    <input value="3" name="rating" id="star3" type="radio" th:checked="${averageRating >= 3 && averageRating < 4}" disabled>
+								    <label for="star3"></label>
+								    <input value="2" name="rating" id="star2" type="radio" th:checked="${averageRating >= 2 && averageRating < 3}" disabled>
+								    <label for="star2"></label>
+								    <input value="1" name="rating" id="star1" type="radio" th:checked="${averageRating >= 1 && averageRating < 2}" disabled>
+								    <label for="star1"></label>
+								    
+								    
+								    
+								    
 								</div>
 								
-<!--								<div class="rating">-->
-<!--								    <input value="5" name="rating" id="star5" type="radio" th:checked="${averageRating >= 4.5}" disabled>-->
-<!--								    <label for="star5"></label>-->
-<!--								    <input value="4" name="rating" id="star4" type="radio" th:checked="${averageRating >= 3.5 && averageRating < 4.5}" disabled>-->
-<!--								    <label for="star4"></label>-->
-<!--								    <input value="3" name="rating" id="star3" type="radio" th:checked="${averageRating >= 2.5 && averageRating < 3.5}" disabled>-->
-<!--								    <label for="star3"></label>-->
-<!--								    <input value="2" name="rating" id="star2" type="radio" th:checked="${averageRating >= 1.5 && averageRating < 2.5}" disabled>-->
-<!--								    <label for="star2"></label>-->
-<!--								    <input value="1" name="rating" id="star1" type="radio" th:checked="${averageRating < 1.5}" disabled>-->
-<!--								    <label for="star1"></label>-->
-<!--								</div>-->
 
 			</div>
 			<div class="text" th:text="${product.description}"></div>
@@ -128,35 +107,33 @@
 						<div style="padding-top: 40px" th:if="${#lists.isEmpty(reviews)}">
 							Non ci sono ancora recensioni per questo prodotto
 						</div>
-
-
-						<ul class="users-review" >
-                        <li class="users-review" th:each="review : ${reviews}">
-                            <a class="flex-item">
-                                <div class="username" th:text="${review.nomeUtente}"></div>
-                                <div class="rating">
-					                <input value="5" name="rating-[[${iterStat.index}]]" id="star5-[[${iterStat.index}]]" type="radio" th:checked="${review.stars == 5}" disabled>
-					                <label for="star5-[[${iterStat.index}]]"></label>
-					                <input value="4" name="rating-[[${iterStat.index}]]" id="star4-[[${iterStat.index}]]" type="radio" th:checked="${review.stars == 4}" disabled>
-					                <label for="star4-[[${iterStat.index}]]"></label>
-					                <input value="3" name="rating-[[${iterStat.index}]]" id="star3-[[${iterStat.index}]]" type="radio" th:checked="${review.stars == 3}" disabled>
-					                <label for="star3-[[${iterStat.index}]]"></label>
-					                <input value="2" name="rating-[[${iterStat.index}]]" id="star2-[[${iterStat.index}]]" type="radio" th:checked="${review.stars == 2}" disabled>
-					                <label for="star2-[[${iterStat.index}]]"></label>
-					                <input value="1" name="rating-[[${iterStat.index}]]" id="star1-[[${iterStat.index}]]" type="radio" th:checked="${review.stars == 1}" disabled>
-					                <label for="star1-[[${iterStat.index}]]"></label>
+						
+						<ul class="users-review">
+					    <li class="users-review" th:each="review, iterStat : ${reviews}">
+					        <div class="flex-item">
+									
+										<a class="username" th:href="@{'/user/' + ${review.nomeUtente}}">
+											<div th:text="${review.nomeUtente}"></div>
+										</a>
+									
+					            
+					            <div class="rating">
+					                <input value="5" th:name="'rating-' + ${iterStat.index}" th:id="'star5-' + ${iterStat.index}" type="radio" th:checked="${review.stars == 5}" disabled>
+					                <label th:for="'star5-' + ${iterStat.index}"></label>
+					                <input value="4" th:name="'rating-' + ${iterStat.index}" th:id="'star4-' + ${iterStat.index}" type="radio" th:checked="${review.stars == 4}" disabled>
+					                <label th:for="'star4-' + ${iterStat.index}"></label>
+					                <input value="3" th:name="'rating-' + ${iterStat.index}" th:id="'star3-' + ${iterStat.index}" type="radio" th:checked="${review.stars == 3}" disabled>
+					                <label th:for="'star3-' + ${iterStat.index}"></label>
+					                <input value="2" th:name="'rating-' + ${iterStat.index}" th:id="'star2-' + ${iterStat.index}" type="radio" th:checked="${review.stars == 2}" disabled>
+					                <label th:for="'star2-' + ${iterStat.index}"></label>
+					                <input value="1" th:name="'rating-' + ${iterStat.index}" th:id="'star1-' + ${iterStat.index}" type="radio" th:checked="${review.stars == 1}" disabled>
+					                <label th:for="'star1-' + ${iterStat.index}"></label>
 					            </div>
-
-
-                                <div class="review-text" th:text="${review.descrizione}"></div>
-                            </a>
-                        </li>
-                    </ul>
+					            <div class="review-text" th:text="${review.descrizione}"></div>
+					        </div>
+					    </li>
+					</ul>
 						
-
-				
-						
-				
 			</div>
 			
 			

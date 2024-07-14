@@ -6,7 +6,7 @@
 		TrueFeedback
 	</title>
 	<link rel="stylesheet" href="/css/main-style.css"/>
-	<link rel="stylesheet" href="/css/profile.css"/>
+	<link rel="stylesheet" href="/css/user.css"/>
 </head>
 
 <body>
@@ -33,11 +33,11 @@
 	
 	<div th:if="${userDetails}">
 		
-		<div class="user" th:text="'User: ' + ${credentials.username}">
+		<div class="user" th:text="'User: ' + ${userCredential.username}">
 			
 		</div>
 		
-		<ul class="users-review" >
+		<ul class="users-review" th:if="reviews != null">
                         <li class="users-review" th:each="review : ${reviews}">
 							<div class="review-product">
 								

@@ -23,11 +23,23 @@ public class CredentialsService {
         Optional<Credentials> result = this.credentialsRepository.findById(id);
         return result.orElse(null);
     }
+    @Transactional
+    public Credentials findByUsername(String username) {
+    	Credentials result = new Credentials();
+    	Iterable<Credentials> iterable = this.credentialsRepository.findAll();
+    	for(Credentials c : iterable) {
+    		if(c.getUsername().equals(username)) {
+    			result = c;
+    		}
+    	}
+    	return result;
+    }
+
 
     @Transactional
     public Credentials getCredentials(String username) {
-        Optional<Credentials> result = this.credentialsRepository.findByUsername(username);
-        return result.orElse(null);
+        Credentials result = this.findByUsername(username);
+        return result;
     }
 
     @Transactional
