@@ -26,12 +26,13 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    border: 1px solid black;
 }
 
 .product {
     background-color: white;
-    width: 50%;
-    height: 20%;
+    width: 30%;
+    height: 50%;
     margin: 15px 0;
     border-radius: 10px;
     position: relative;
@@ -40,6 +41,7 @@
 
 .product a {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     text-decoration: none;
 }

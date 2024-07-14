@@ -2,6 +2,7 @@ package com.uniroma3.prog.controller;
 
 import java.util.List;
 
+import com.uniroma3.prog.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.uniroma3.prog.model.Credentials;
-import com.uniroma3.prog.model.Image;
-import com.uniroma3.prog.model.Product;
-import com.uniroma3.prog.model.Review;
-import com.uniroma3.prog.model.User;
 import com.uniroma3.prog.repository.ImageRepository;
 import com.uniroma3.prog.repository.ProductRepository;
 import com.uniroma3.prog.repository.ReviewRepository;

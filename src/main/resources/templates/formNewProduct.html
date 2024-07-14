@@ -21,8 +21,7 @@
 	
 <!--	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>-->
 	<h1>Aggiungi un prodotto</h1>
-	<form th:action="@{/product}" method="POST" th:object="${product}"
-	enctype="multipart/form-data">
+	<form th:action="@{/product}" method="POST" th:object="${product}" enctype="multipart/form-data">
   		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
   		</div>
@@ -34,10 +33,12 @@
 		    </span>
 		</div>
 
-		<div>
-			<label>Categoria:</label> <span><input type="text" th:field="${product.category}" /></span>
-<!--		    <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}">-->
-		    </span>
+		<div class="dropdown-container">
+			<div class="text">Categoria della ricetta:</div>
+			<select class="input" th:field="${product.category}" id="category">
+				<option th:each="category : ${categories}"
+						th:value="${category}" th:text="${category}">Categoria</option>
+			</select>
 		</div>
 		<div>
 			<label>Descrizione</label> <span><input type="text" th:field="${product.description}" /></span>

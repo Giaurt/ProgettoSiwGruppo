@@ -1,5 +1,6 @@
 package com.uniroma3.prog.service;
 
+import com.uniroma3.prog.model.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,11 @@ public class ProductService {
 	@Transactional(readOnly = true)
 	public List<Product> searchProduct(String keyword) {
 		return productRepository.findByNameContainingIgnoreCase(keyword);
+	}
+
+	@Transactional(readOnly = true)
+	public List<Product> searchProductsByCategory(Category category) {
+		return productRepository.findByCategoryNameContainingIgnoreCase(category.name());
 	}
 
 }
