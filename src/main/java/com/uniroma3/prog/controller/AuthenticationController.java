@@ -102,4 +102,9 @@ public class AuthenticationController {
         return "register";
     }
 
+    @GetMapping(value = "/admin/page")
+    public String showAdminPage(Model model) {
+        return "admin/admin-page";
+    }
+
 }

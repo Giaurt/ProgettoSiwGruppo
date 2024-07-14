@@ -20,7 +20,7 @@
   		    <input placeholder="Brand" class="input-field" name="surname" type="text" required th:field="${product.marca}">
   		  </div>
 			<div class="dropdown-container">
-				<div class="text">Categoria della ricetta:</div>
+				<div class="text">Categoria del prodotto:</div>
 				<select class="input" th:field="${product.category}" id="category">
 					<option th:each="category : ${categories}"
 							th:value="${category}" th:text="${category}">Categoria</option>

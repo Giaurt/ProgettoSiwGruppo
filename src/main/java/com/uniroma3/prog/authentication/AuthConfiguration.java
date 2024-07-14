@@ -16,6 +16,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
+import static com.uniroma3.prog.model.Credentials.ADMIN_ROLE;
+
 @Configuration
 @EnableWebSecurity
 public class AuthConfiguration {
@@ -48,6 +50,8 @@ public class AuthConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/", "/index", "/register","/products","/products/**","/product/**","/formNewProduct", "/css/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/register","/product", "/login").permitAll()
+                .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
+                .requestMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .loginPage("/login")
