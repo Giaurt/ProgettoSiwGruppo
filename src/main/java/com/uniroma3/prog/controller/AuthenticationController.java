@@ -48,8 +48,7 @@ public class AuthenticationController {
         }
         return "index";
     }
-    
-    
+
     @GetMapping(value = "/profile")
     @Transactional
     public String showProfile(Model model) {
@@ -61,8 +60,6 @@ public class AuthenticationController {
 		model.addAttribute("products", this.productService.findAll());
 		return "profile.html";
 	}
-    
-    
 
     @GetMapping(value = "/login")
     public String showLoginForm(Model model) {

@@ -10,82 +10,36 @@
 </head>
 
 <body>
-	
-<!--	<div><a href="/"><img src="/images/logo-siw.png" width="50%"/></a></div>-->
-	<h1>Aggiungi un prodotto</h1>
-	<form th:action="@{/product}" method="POST" th:object="${product}" enctype="multipart/form-data">
-  		<div th:if="${#fields.hasGlobalErrors()}">
-  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
-  		</div>
-		
-<!--		<div>-->
-<!--			<label>Nome:</label> -->
-<!--			<span><input type="text" th:field="${product.name}" /></span>-->
-<!--		    </span>-->
-<!--		</div>-->
-<!--		<div>-->
-<!--			<label>Marca:</label> -->
-<!--			<span><input type="text" th:field="${product.marca}" /></span>-->
-<!--		    </span>-->
-<!--		</div>-->
-
-		<div class="dropdown-container">
-			<div class="text">Categoria della ricetta:</div>
-			<select class="input" th:field="${product.category}" id="category">
-				<option th:each="category : ${categories}"
-						th:value="${category}" th:text="${category}">Categoria</option>
-			</select>
-		</div>
-		<div>
-			<label>Descrizione</label> <span><input type="text" th:field="${product.description}" /></span>
-<!--		    <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}">-->
-		    </span>
-		</div>
-
-<!--		<div>-->
-<!--			<input-->
-<!--			name="file"-->
-<!--			type="file"-->
-<!--			id="file-upload"-->
-<!--			accept="image/png, image/jpeg"-->
-<!--			required>-->
-<!--		</div>-->
-		
-<!--		<div>-->
-<!--			<span><button type="submit">Conferma</button></span>-->
-<!--		</div>-->
-<!--	</form>-->
-	
-	
 	<div class="card">
-  <h4 class="card-title">Aggiungi un prodotto</h4>
-  <form th:action="@{/product}" method="POST" th:object="${product}" enctype="multipart/form-data">
-	  <div class="field">
-      <input placeholder="Nome" class="input-field" name="name" type="text" required th:field="${product.name}">
-    </div>
-    <div class="field">
-      <input placeholder="Brand" class="input-field" name="surname" type="text" required th:field="${product.marca}">
-    </div>
-    <div class="field">
-      <input placeholder="Catergoria" class="input-field" name="email" type="text" required th:field="${product.category}">
-    </div>
-    <div class="field">
-      <input placeholder="Descrizione" class="input-field" name="email" type="text" required th:field="${product.description}">
-    </div>
-    <div class="field">
-			<input
-			name="file"
-			type="file"
-			id="file-upload"
-			accept="image/png, image/jpeg"
-			required>
-		</div>
-    
-    <button class="btn" type="submit">Conferma</button>
-  </form>
-</div>
-	
-		</div>	
-</body>
+  		<h4 class="card-title">Aggiungi un prodotto</h4>
+  		<form th:action="@{/product}" method="POST" th:object="${product}" enctype="multipart/form-data">
+			  <div class="field">
+  		    <input placeholder="Nome" class="input-field" name="name" type="text" required th:field="${product.name}">
+  		  </div>
+  		  <div class="field">
+  		    <input placeholder="Brand" class="input-field" name="surname" type="text" required th:field="${product.marca}">
+  		  </div>
+			<div class="dropdown-container">
+				<div class="text">Categoria della ricetta:</div>
+				<select class="input" th:field="${product.category}" id="category">
+					<option th:each="category : ${categories}"
+							th:value="${category}" th:text="${category}">Categoria</option>
+				</select>
+			</div>
+  		  <div class="field">
+  		    <input placeholder="Descrizione" class="input-field" name="email" type="text" required th:field="${product.description}">
+  		  </div>
+  		  <div class="field">
+					<input
+					name="file"
+					type="file"
+					id="file-upload"
+					accept="image/png, image/jpeg"
+					required>
+				</div>
 
+  		  <button class="btn" type="submit">Conferma</button>
+  		</form>
+	</div>
+</body>
 </html>

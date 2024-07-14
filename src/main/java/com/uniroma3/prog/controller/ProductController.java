@@ -16,13 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
-<<<<<<< HEAD
-=======
-import com.uniroma3.prog.model.Credentials;
-import com.uniroma3.prog.model.Image;
-import com.uniroma3.prog.model.Product;
-import com.uniroma3.prog.model.Review;
->>>>>>> 1679799afc19388a83f21569d3440de085c2c3d1
 import com.uniroma3.prog.repository.ImageRepository;
 import com.uniroma3.prog.repository.ProductRepository;
 import com.uniroma3.prog.repository.ReviewRepository;
@@ -39,11 +32,8 @@ public class ProductController {
 	@Autowired ProductRepository productRepository;
 	@Autowired ImageRepository imageRepository;
 	@Autowired ReviewRepository reviewRepository;
-//<<<<<<< Updated upstream
-//=======
 	@Autowired CredentialsService credentialsService;
 	
-//>>>>>>> Stashed changes
 
 	@GetMapping("/products/{id}")
 	public String getProduct(@PathVariable("id")Long id, Model model) {
