@@ -63,7 +63,7 @@ public class ProductController {
 		return "tools.html";
 	}
 	
-	@GetMapping(value="/newproduct")
+	@GetMapping(value="/admin/newproduct")
 	public String formNewProduct(Model model) {
 		model.addAttribute("product", new Product());
 		return "formNewProduct.html";
@@ -89,23 +89,15 @@ public class ProductController {
 			return "formNewProduct.html"; 
 		}
 	}
-//<<<<<<< Updated upstream
-//
-//	@GetMapping(value="/formNewReview/{id}")
-//	public String formNewIngrediente(@PathVariable Long id,Model model) {
-//		model.addAttribute("review", new Review());
-//		model.addAttribute("product", this.productRepository.findById(id).orElse(null));
-//		return "formNewReview.html";
-//	}
-//=======
-	
-	
-	
-	
-	
-	
-	
-	
+
+	//@GetMapping(value="/formNewReview/{id}")
+	//public String formNewIngrediente(@PathVariable Long id,Model model) {
+	//	model.addAttribute("review", new Review());
+	//	model.addAttribute("product", this.productRepository.findById(id).orElse(null));
+	//	return "formNewReview.html";
+	//}
+
+
 //	@GetMapping(value="/formNewReview/{id}")
 //	public String formNewReview(@PathVariable Long id,Model model) {
 //		model.addAttribute("review", new Review());
@@ -211,19 +203,4 @@ public class ProductController {
 	        return "redirect:/products/" + product.getId();
 	    }
 	}
-
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
