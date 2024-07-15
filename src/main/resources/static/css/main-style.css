@@ -1,47 +1,54 @@
-body {
-    background-color: #424769;
-    color: #ffffff;
-    margin: 0px;
-}
-*{
-	text-decoration: none;
-}
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
+:root {
+    --topbar-height: 8vh;
+    --content-width: 70%;
+    --font-size: 1rem;
 }
 
-.title {
-/*    font-family: "Playwrite ES Deco";*/
-	padding: 20px 0px 30px 10px;
-    font-size: 60px;
-    color: #ffd52d;
+body {
+    background-color: rgb(227, 230, 230);
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    font-style: normal;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
 }
-.product-container{
-	display: flex;
-	justify-content: flex-start;
-	align-items: stretch;
+
+.content {
+    margin-top: var(--topbar-height);
+    max-width: var(--content-width);
 }
-.menu{
-	width: 400px;
-	height: 700px;
-	display: grid;
-	grid-template-rows:52px 52px 52px;
-	background-color: #676f9d;
+
+@media (max-width: 1000px) {
+    :root {
+        --content-width: 100%;
+    }
 }
-.category-button{
-	height: 50px;
-	border: 2px solid #ccc;
+
+@media (max-width: 1200px) {
+    :root {
+        --topbar-height: 8vh;
+        --font-size: 1rem;
+    }
 }
-.category-button:hover{
-	background-color: #424769;
-	border: 2px solid #ccc;
+
+@media (max-width: 800px) {
+    :root {
+        --topbar-height: 6vh;
+        --font-size: 0.5rem;
+    }
 }
-.category-text{
-	padding-top: 7px;
-	text-align: center;
-	font-size: 30px;
-	margin: auto;
+
+@media (max-width: 600px) {
+    :root {
+        --topbar-height: 5vh;
+    }
+}
+
+.footer {
+
 }

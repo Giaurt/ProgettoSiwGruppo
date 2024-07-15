@@ -5,126 +5,66 @@
     <title>
         TrueFeedback
     </title>
-    <!--     FONT AWESOME     -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="/css/main-style.css"/>
     <link rel="stylesheet" href="/css/topbar.css"/>
-    <link rel="stylesheet" href="/css/search-bar.css"/>
-    <link rel="stylesheet" href="/css/products.css"/>
-    <!-- TITLE FONT -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playwrite+ES+Deco:wght@100..400&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="/css/index-menu-button.css"/>
+
+    <link rel="stylesheet" href="/css/index.css"/>
 </head>
-
 <body>
-    <div class="main-container">
-        <div class="topbar">
-            <a href="/">
-                <div class="title">
-                    TrueFeedback
-                </div>
-            </a>
-            <div class="userInfo">
-                <div th:if="${userDetails}">
-                    <span th:text="${userDetails.username}"></span>
-                    <a href="/logout">Logout</a>
-                </div>
-                <div th:unless="${userDetails}">
-                    <a href="/login">Login</a>
-                </div>
+    <div class="topbar">
+        <a class="title" href="/">
+            TrueFeedback
+        </a>
+        <div class="categories-dropdown">
+            <button class="dropdown-button">
+                <i class="fas fa-bars"></i>
+                <h1>Tutte le categorie</h1>
+            </button>
+            <div class="dropdown-content">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
             </div>
         </div>
-
         <div class="search-container">
-            <div class="box">
+            <div class="search-bar">
                 <form th:action="@{/search}" method="POST">
-                    <input type="text" class="search-bar-input" name="keyword" onmouseout="this.value = ''; this.blur();">
+                    <input type="text" class="search-bar-input" name="keyword" placeholder="Cerca..." autocomplete="off">
+                    <button class="search-bar-button" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
                 </form>
-                <i class="fas fa-search"></i>
             </div>
         </div>
-
-        <div class="filter">
-            Filter Placeholder
-        </div>
-
-        <div class="product-container">
-			
-			<div class="menu">
-				
-			<div class="category-button">
-				<div class="category-text">
-					Attrezzi
-				</div>
-			</div>
-			<div class="category-button">
-				<div class="category-text">
-					Attrezzi
-				</div>
-			</div>
-			<div class="category-button">
-				<div class="category-text">
-					Attrezzi
-				</div>
-			</div>
-				
-				
-				
-			</div>
-			
-			
-			
-<!--			<div class="products-grid">-->
-<!--            <div class="product">-->
-<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
-<!--                <h1>Name</h1>-->
-<!--            </div>-->
-<!--            <div class="product">-->
-<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
-<!--                <h1>Name</h1>-->
-<!--            </div>-->
-<!--            <div class="product">-->
-<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
-<!--                <h1>Name</h1>-->
-<!--            </div>-->
-<!--            <div class="product">-->
-<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
-<!--                <h1>Name</h1>-->
-<!--            </div>-->
-<!--            <div class="product">-->
-<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
-<!--                <h1>Name</h1>-->
-<!--            </div>-->
-<!--            <div class="product">-->
-<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
-<!--                <h1>Name</h1>-->
-<!--            </div>-->
-<!--            <div class="product">-->
-<!--                <img src="https://www.leggioferramenta.com/547-large_default/trapano-avvitatore-con-percussione-18v-xr-litio-13ah.jpg">-->
-<!--                <h1>Name</h1>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--		</div>-->
-        
-        
-        
-
-         <div class="products-grid" th:if="${products.isEmpty()}">
-            Non ci sono prodotti nel sistema
-        </div>
-        <div class="products-grid" th:each="product : ${products}">
-            <a th:href="@{'/products/' + ${product.id}}">
-				<div class="product" >
-				<img th:src="@{'data:image/jpeg; base64, '+${product.image.generateBase64Image()}}"></img>
-<!--                <img th:src="${product.urlImage}" alt="Product Image"/>-->
-                <div class="prod-name" th:text="${product.name}">Name</div>
-			</a>
+        <div class="userInfo">
+            <div th:if="${userDetails}">
+                <span th:text="${userDetails.username}"></span>
+                <a href="/logout">Logout</a>
             </div>
-        </div> 
+            <div th:unless="${userDetails}">
+                <a href="/login">Login</a>
+            </div>
+        </div>
     </div>
+
+    <div class="content">
+        <div class="categories-container">
+            <div class="category-box" th:each="category : ${categories}">
+                <h1 th:text="${category}"></h1>
+                <div class="category-img">
+                    <img src="https://images-eu.ssl-images-amazon.com/images/G/29/marketing/prime/reduce_size_1._SY304_CB570029445_.jpg">
+                </div>
+                <div class="category-ref">
+                    <a href="/">Scopri di più</a>
+                </div>
+            </div>
+        </div>
     </div>
 </body>	
 
