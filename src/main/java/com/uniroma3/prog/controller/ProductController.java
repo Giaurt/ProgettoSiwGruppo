@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.uniroma3.prog.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -21,9 +23,12 @@ import com.uniroma3.prog.repository.ProductRepository;
 import com.uniroma3.prog.repository.ReviewRepository;
 import com.uniroma3.prog.service.CredentialsService;
 import com.uniroma3.prog.service.ProductService;
+import com.uniroma3.prog.service.ReviewService;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+
+import static com.uniroma3.prog.model.Credentials.ADMIN_ROLE;
 
 @Controller
 public class ProductController {
@@ -32,23 +37,49 @@ public class ProductController {
 	@Autowired ProductRepository productRepository;
 	@Autowired ImageRepository imageRepository;
 	@Autowired ReviewRepository reviewRepository;
+	@Autowired ReviewService reviewService;
 	@Autowired CredentialsService credentialsService;
 	
 
 	@GetMapping("/products/{id}")
 	public String getProduct(@PathVariable("id")Long id, Model model) {
-		Product product = productService.findById(id);
-		List<Review> reviews = reviewRepository.findByProdotto(product);
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication instanceof AnonymousAuthenticationToken) {
+			Product product = productService.findById(id);
+			List<Review> reviews = reviewRepository.findByProdotto(product);
 
-        int totalStars = reviews.stream().mapToInt(Review::getStars).sum();
-        int userCount = reviews.size();
-        double averageRating = (userCount != 0) ? (int) Math.round((double) totalStars / userCount) : 0;
-        System.out.println(averageRating);
+	        int totalStars = reviews.stream().mapToInt(Review::getStars).sum();
+	        int userCount = reviews.size();
+	        double averageRating = (userCount != 0) ? (int) Math.round((double) totalStars / userCount) : 0;
+	        System.out.println(averageRating);
 
-        model.addAttribute("averageRating", averageRating);
-		model.addAttribute("product", this.productService.findById(id));
-		model.addAttribute("reviews", this.reviewRepository.findByProdotto(product));
+	        model.addAttribute("averageRating", averageRating);
+			model.addAttribute("product", this.productService.findById(id));
+			model.addAttribute("reviews", this.reviewRepository.findByProdotto(product));
+			return "product.html";
+		}else {
+			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		    Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		    if(credentials.getRole().equals(ADMIN_ROLE)) {
+		    	Product product = productService.findById(id);
+				List<Review> reviews = reviewRepository.findByProdotto(product);
+
+		        int totalStars = reviews.stream().mapToInt(Review::getStars).sum();
+		        int userCount = reviews.size();
+		        double averageRating = (userCount != 0) ? (int) Math.round((double) totalStars / userCount) : 0;
+		        System.out.println(averageRating);
+
+		        model.addAttribute("averageRating", averageRating);
+				model.addAttribute("product", this.productService.findById(id));
+				model.addAttribute("reviews", this.reviewRepository.findByProdotto(product));
+				return "/admin/admin-product.html";
+		    
+		    }
+		}
 		return "product.html";
+		
+	    
+		
 	}
 	
 	@GetMapping("/products")
@@ -66,7 +97,7 @@ public class ProductController {
 	@GetMapping(value="/admin/newproduct")
 	public String formNewProduct(Model model) {
 		model.addAttribute("product", new Product());
-		return "formNewProduct.html";
+		return "/admin/formNewProduct.html";
 	}
 	
 	@PostMapping(value={"/product"}, consumes = "multipart/form-data")
@@ -203,4 +234,17 @@ public class ProductController {
 	        return "redirect:/products/" + product.getId();
 	    }
 	}
+	
+	
+	
+	@PostMapping(value = "/product/delete/{id}")
+    public String deleteRicetta(@PathVariable("id") Long id) {
+        
+        reviewService.deleteRicettaById(id);
+        
+        return "redirect:/product";
+    }
+	
+	
+	
 }

@@ -33,5 +33,8 @@ public class ReviewService {
 
 	        return reviewRepository.findByProdotto(product);
 	    }
+	public void deleteRicettaById(Long id) {
+        reviewRepository.deleteById(id);
+    }
 	
 }
