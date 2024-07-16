@@ -6,10 +6,59 @@
 		New Product
 	</title>
 	<link rel="stylesheet" href="/css/main-style.css" />
+	<link rel="stylesheet" href="/css/topbar.css" />
 	<link rel="stylesheet" href="/css/formNewProduct.css" />
 </head>
 
 <body>
+	    <div class="topbar">
+        <a class="title" href="/">
+            TrueFeedback
+        </a>
+        <div class="categories-dropdown">
+            <button class="dropdown-button">
+                <i class="fas fa-bars"></i>
+                <h1>Tutte le categorie</h1>
+            </button>
+            <div class="dropdown-content">
+                <div th:each="category : ${categories}">
+					<a th:href="@{'/category/' + ${category}}" th:text="${category}"></a>
+				</div>
+            </div>
+        </div>
+        <div class="categories-dropdown">
+			<a href="/admin/newproduct">
+				<button class="add-product-button">
+	                <h1>Aggiungi un prodotto</h1>
+	            </button>
+			</a>
+            
+        </div>
+        <div class="search-container">
+            <div class="search-bar">
+                <form th:action="@{/search}" method="POST">
+                    <input type="text" class="search-bar-input" name="keyword" placeholder="Cerca..." autocomplete="off">
+                    <button class="search-bar-button" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="userInfo" th:if="${userDetails}">
+
+                <a class="login-icon" href="/profile">
+					<img  src="/images/user-white.png" style="width: 60%;">
+				</a>
+            </div>
+            
+            
+            <div th:unless="${userDetails}">
+				<a class="login-icon" href="/login">
+					<img  src="/images/login-white.png" style="width: 60%;">
+				</a>
+						 
+            </div>
+        </div>
 	<div class="card">
   		<h4 class="card-title">Aggiungi un prodotto</h4>
   		<form th:action="@{/product}" method="POST" th:object="${product}" enctype="multipart/form-data">
@@ -19,18 +68,21 @@
   		  <div class="field">
   		    <input placeholder="Brand" class="input-field" name="surname" type="text" required th:field="${product.marca}">
   		  </div>
-			<div class="dropdown-container">
-				<div class="text">Categoria del prodotto:</div>
-				<select class="input" th:field="${product.category}" id="category">
-					<option th:each="category : ${categories}"
-							th:value="${category}" th:text="${category}">Categoria</option>
-				</select>
+  		  <div class="field">
+				<div class="dropdown-container">
+					<div class="text">Categoria del prodotto:</div>
+					<select class="input" th:field="${product.category}" id="category">
+						<option th:each="category : ${categories}"
+								th:value="${category}" th:text="${category}">Categoria</option>
+					</select>
+				</div>
 			</div>
+			
   		  <div class="field">
   		    <input placeholder="Descrizione" class="input-field" name="email" type="text" required th:field="${product.description}">
   		  </div>
   		  <div class="field">
-					<input
+					<input class="image-input"
 					name="file"
 					type="file"
 					id="file-upload"

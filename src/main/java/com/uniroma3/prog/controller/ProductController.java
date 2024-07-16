@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -108,7 +109,7 @@ public class ProductController {
 	}
 	
 	@PostMapping(value={"/product"}, consumes = "multipart/form-data")
-	public String newMovie(@Valid @ModelAttribute("product") Product product,@RequestPart("file") MultipartFile file, BindingResult bindingResult, Model model) {
+	public String newProduct(@Valid @ModelAttribute("product") Product product,@RequestPart("file") MultipartFile file, BindingResult bindingResult, Model model) {
 		
 		if (!bindingResult.hasErrors()) {
 			try {
@@ -127,6 +128,13 @@ public class ProductController {
 			return "formNewProduct.html"; 
 		}
 	}
+	
+	@PostMapping("/delete/{productId}")
+    public String deleteProduct(@PathVariable ("productId") Long productId) {
+		
+        productService.deleteProduct(productId);
+        return "index.html";
+    }
 
 	//@GetMapping(value="/formNewReview/{id}")
 	//public String formNewIngrediente(@PathVariable Long id,Model model) {

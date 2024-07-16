@@ -34,5 +34,13 @@ public class ProductService {
 	public List<Product> searchProductsByCategory(Category category) {
 		return productRepository.findByCategoryNameContainingIgnoreCase(category.name());
 	}
+	
+	public void deleteProduct(Long productId) {
+        if (productRepository.existsById(productId)) {
+            productRepository.deleteById(productId);
+        } else {
+            throw new IllegalArgumentException("Product with id " + productId + " not found");
+        }
+    }
 
 }

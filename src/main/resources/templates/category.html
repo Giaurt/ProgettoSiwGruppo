@@ -42,16 +42,21 @@
                 </form>
             </div>
         </div>
-        <div class="userInfo">
-            <div th:if="${userDetails}">
-                <span th:text="${userDetails.username}"></span>
-                <a href="/logout">Logout</a>
+        <div class="userInfo" th:if="${userDetails}">
+
+                <a class="login-icon" href="/profile">
+					<img  src="/images/user-white.png" style="width: 60%;">
+				</a>
             </div>
+            
+            
             <div th:unless="${userDetails}">
-                <a href="/login">Login</a>
+				<a class="login-icon" href="/login">
+					<img  src="/images/login-white.png" style="width: 60%;">
+				</a>
+						 
             </div>
         </div>
-    </div>
 
     <div class="content">
     <div class="categories-container">

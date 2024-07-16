@@ -56,7 +56,7 @@
 .review-add-box{
 	color: aliceblue;
 	height: 150px;
-	background-color: rgb(64, 0, 64);
+	background-color: #2a2b38;
 	margin: 0px 20px 0px 20px;
 	box-shadow: 0px 5px 20px rgb(145, 145, 145);
 }
@@ -64,15 +64,15 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	background-color: rgb(225, 139, 23);
+	background-color: #2a2b38;
 	margin: 20px 0px 10px 0px;
 	padding: 0px 10px 0px 10px;
 }
 .flex-item{
 	display: inline-block;
-	background-color: rgb(221, 221, 221);
+	background-color: #1f2029;
 	word-wrap: break-word;
-	box-shadow: 0px 5px 20px rgb(159, 159, 159);
+/*	box-shadow: 0px 5px 20px rgb(159, 159, 159);*/
 	margin: 10px 0px 20px 0px;
 }
 .flex-item:hover{
@@ -88,7 +88,12 @@
 .username{
 	display: inline-block;
 	margin: 0px 0px 0px 10px;
+	color: aliceblue;
 }
+.review-text{
+	color: aliceblue;
+}
+
 
 
 

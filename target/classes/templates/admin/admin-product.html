@@ -35,6 +35,11 @@
 		
 		<div class="product-name" th:text="${product.name}"></div>
 		<div class="product-brand" >DeWALT</div>
+		<div class="delete-product">
+			<form th:action="@{'/delete/' + ${product.id}}" method="post">
+				<button type="submit"> elimina</button>
+			</form>
+		</div>
 		
 		<div class="product-image">
 			<img class="image" th:src="@{'data:image/jpeg; base64, '+${product.image.generateBase64Image()}}"></img>

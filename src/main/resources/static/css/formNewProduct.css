@@ -5,6 +5,7 @@
     align-items: center;
 }
 .card {
+	margin-top: 60px;
  width: 300px;
  padding: 1rem 1.2rem;
  text-align: center;
@@ -22,6 +23,12 @@
  background-color: #1f2029;
  border-radius: 4px;
  padding: 1em 1em;
+}
+.text{
+	color: #d3d3d3;
+}
+.image-input{
+	color: #d3d3d3;
 }
 
 .input-icon {
