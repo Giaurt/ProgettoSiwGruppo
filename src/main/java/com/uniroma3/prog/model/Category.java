@@ -4,10 +4,7 @@ public enum Category {
     Elettronica,
     Abbigliamento,
     Attrezzi,
-    JhonnyElPaguroLesto,
-    Sandy,
-    Solomon,
-    Dolly,
-    ChristineNonForgetta,
-    tools
+    Sport,
+    Giardino,
+    Libri
 }

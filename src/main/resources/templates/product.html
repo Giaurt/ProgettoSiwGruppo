@@ -58,7 +58,7 @@
 	<div class="product-container" th:if="${product}">
 		
 		<div class="product-name" th:text="${product.name}"></div>
-		<div class="product-brand" >DeWALT</div>
+		<div class="product-brand" th:text="${product.marca}" ></div>
 		
 		<div class="product-image">
 			<img class="image" th:src="@{'data:image/jpeg; base64, '+${product.image.generateBase64Image()}}"></img>

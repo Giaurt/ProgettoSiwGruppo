@@ -52,7 +52,6 @@
         </div>
 	
 	
-<!--	<div th:if="${userDetails}">-->
 		
 		<div class="user" th:text="'Utente: ' + ${credentials.username}">
 			
@@ -60,6 +59,9 @@
 		
 		<div class="no-review" th:if="${#lists.isEmpty(reviews)}">
 		    <a href="/">Non hai ancora lasciato alcuna recensione</a>
+		</div>
+		<div class="no-review" th:unless="${#lists.isEmpty(reviews)}">
+		    <a>Ecco le tue recensioni!</a>
 		</div>
 		
 		<li class="users-review" th:each="review : ${reviews}">

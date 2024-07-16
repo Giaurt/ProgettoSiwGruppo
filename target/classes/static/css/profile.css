@@ -109,8 +109,27 @@ body {
 	text-decoration: underline;
 }
 .logout{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width:130px;
+	height: 60px;
 	margin: 25px 0px 15px 100px;
 	font-size: 25px;
+	background-color: rgb(227, 230, 230);
+	border: 2px solid #1f2029;
+	color:#1f2029;
+	border-radius: 3px;
+}
+.logout a{
+	text-decoration: none;
+	color: #1f2029;
+}
+.logout:hover{
+	background-color: #1f2029;
+}
+.logout:hover a{
+	color: rgb(227, 230, 230);
 }
 
 

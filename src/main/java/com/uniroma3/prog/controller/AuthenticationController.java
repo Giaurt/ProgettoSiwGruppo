@@ -92,7 +92,7 @@ public class AuthenticationController {
         userService.saveUser(user);
         credentialsService.saveCredentials(credentials);
         model.addAttribute("user", user);
-        return "register";
+        return "loginForm";
     }
 
 }

@@ -231,7 +231,7 @@
 	<div class="product-container" th:if="${product}">
 		
 		<div class="product-name" th:text="${product.name}"></div>
-		<div class="product-brand" >DeWALT</div>
+		<div class="product-brand" th:text="${product.marca}"></div>
 		<div >
 			<form th:action="@{'/delete/' + ${product.id}}" method="post">
 				<button class="delete-product" type="submit"> Elimina il prodotto</button>
