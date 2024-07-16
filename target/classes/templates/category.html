@@ -45,30 +45,35 @@
         <div class="userInfo" th:if="${userDetails}">
 
                 <a class="login-icon" href="/profile">
-					<img  src="/images/user-white.png" style="width: 60%;">
+                    <i class="fas fa-user"></i>
 				</a>
             </div>
             
             
-            <div th:unless="${userDetails}">
+            <div class="userInfo" th:unless="${userDetails}">
 				<a class="login-icon" href="/login">
-					<img  src="/images/login-white.png" style="width: 60%;">
+					<i class="fas fa-sign-in-alt"></i>
 				</a>
-						 
             </div>
         </div>
 
     <div class="content">
-    <div class="categories-container">
+		
+		<div th:if="${#lists.isEmpty(products)}">
+			<a style="font-size: 30px;">Non ci sono ancora prodotti appartenenti a questa categoria</a>
+		</div>
+		
+		
+    <div class="categories-container" th:unless="${#lists.isEmpty(products)}">
         <div class="category-box" th:each="product : ${products}">
 			<h1 th:text="${product.name}"></h1>
-            <div th:if="${product.category} == ${category}">
+				<h1 th:text="${product.marca}"></h1>
+            <div>
 				<a th:href="'/products/' + ${product.id}">
 	                <div class="category-img">
 	                    <img class="image" th:src="@{'data:image/jpeg;base64,' + ${product.image.generateBase64Image()}}" alt="Product Image"/>
 	                </div>
 				</a>
-                
             </div>
         </div>
     </div>

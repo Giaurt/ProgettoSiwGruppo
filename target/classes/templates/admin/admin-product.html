@@ -1,3 +1,177 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+
+<!--<head>-->
+<!--	<title>-->
+<!--		TrueFeedback-->
+<!--	</title>-->
+<!--	<link rel="stylesheet" href="/css/main-style.css"/>-->
+<!--	<link rel="stylesheet" href="/css/product.css"/>-->
+<!--</head>-->
+
+<!--<body>-->
+	
+<!--	    <div class="main-container">-->
+<!--        <div class="topbar">-->
+<!--            <a href="/">-->
+<!--                <div class="title">-->
+<!--                    TrueFeedback-->
+<!--                </div>-->
+<!--            </a>-->
+<!--            <div class="userInfo">-->
+<!--                <div th:if="${userDetails}">-->
+<!--                    <span th:text="${userDetails.username}"></span>-->
+<!--                    <a href="/logout">Logout</a>-->
+<!--                </div>-->
+<!--                <div th:unless="${userDetails}">-->
+<!--                    <a href="/login">Login</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+	
+<!--	<div class="product-container"></div>-->
+	
+<!--	<div th:if="${product}">-->
+		
+<!--		<div class="product-name" th:text="${product.name}"></div>-->
+<!--		<div class="product-brand" >DeWALT</div>-->
+<!--		<div class="delete-product">-->
+<!--			<form th:action="@{'/delete/' + ${product.id}}" method="post">-->
+<!--				<button type="submit"> elimina</button>-->
+<!--			</form>-->
+<!--		</div>-->
+		
+<!--		<div class="product-image">-->
+<!--			<img class="image" th:src="@{'data:image/jpeg; base64, '+${product.image.generateBase64Image()}}"></img>-->
+<!--			<div class="product-description" >-->
+<!--			<div class="stars">-->
+
+<!--								<div class="rating" >-->
+<!--									<input value="5" name="rating" id="star5" type="radio" th:checked="${averageRating == 5}" disabled>-->
+<!--								    <label for="star5"></label>-->
+<!--								    <input value="4" name="rating" id="star4" type="radio" th:checked="${averageRating >= 4 && averageRating < 5}" disabled>-->
+<!--								    <label for="star4"></label>-->
+<!--								    <input value="3" name="rating" id="star3" type="radio" th:checked="${averageRating >= 3 && averageRating < 4}" disabled>-->
+<!--								    <label for="star3"></label>-->
+<!--								    <input value="2" name="rating" id="star2" type="radio" th:checked="${averageRating >= 2 && averageRating < 3}" disabled>-->
+<!--								    <label for="star2"></label>-->
+<!--								    <input value="1" name="rating" id="star1" type="radio" th:checked="${averageRating >= 1 && averageRating < 2}" disabled>-->
+<!--								    <label for="star1"></label>-->
+								    
+								    
+								    
+								    
+<!--								</div>-->
+								
+
+<!--			</div>-->
+<!--			<div class="text" th:text="${product.description}"></div>-->
+<!--			</div>-->
+<!--		</div>-->
+		
+		
+		
+<!--		<div class="review-container">Recensioni-->
+			
+<!--			<div class="reviews">-->
+				
+<!--				<div class="add-review" >-->
+					
+					
+					
+<!--					<div class="review-add-box">-->
+						
+<!--						<div th:if="${userDetails}">-->
+						
+<!--						Aggiungi la tua recensione-->
+						
+<!--						<br>-->
+						
+<!--							<a th:href="@{'/formNewReview/' + ${product.id}}">-->
+<!--								<button class="btn" type="submit">Aggiungi recensione</button>-->
+<!--							</a>-->
+							
+							
+<!--						</div>-->
+										    
+		    				
+<!--						<div th:unless="${userDetails}">-->
+<!--                    		<a href="/login">Devi fare il login per recensire un prodotto</a>-->
+<!--                		</div>-->
+						
+						
+						
+<!--					</div>-->
+					
+					
+					
+<!--				</div>-->
+					
+						
+						
+<!--						<div style="padding-top: 40px" th:if="${#lists.isEmpty(reviews)}">-->
+<!--							Non ci sono ancora recensioni per questo prodotto-->
+<!--						</div>-->
+						
+<!--						<ul class="users-review">-->
+<!--					    <li class="users-review" th:each="review, iterStat : ${reviews}">-->
+<!--					        <div class="flex-item">-->
+									
+<!--										<a class="username" th:href="@{'/user/' + ${review.nomeUtente}}">-->
+<!--											<div th:text="${review.nomeUtente}"></div>-->
+<!--										</a>-->
+									
+					            
+<!--					            <div class="rating">-->
+<!--					                <input value="5" th:name="'rating-' + ${iterStat.index}" th:id="'star5-' + ${iterStat.index}" type="radio" th:checked="${review.stars == 5}" disabled>-->
+<!--					                <label th:for="'star5-' + ${iterStat.index}"></label>-->
+<!--					                <input value="4" th:name="'rating-' + ${iterStat.index}" th:id="'star4-' + ${iterStat.index}" type="radio" th:checked="${review.stars == 4}" disabled>-->
+<!--					                <label th:for="'star4-' + ${iterStat.index}"></label>-->
+<!--					                <input value="3" th:name="'rating-' + ${iterStat.index}" th:id="'star3-' + ${iterStat.index}" type="radio" th:checked="${review.stars == 3}" disabled>-->
+<!--					                <label th:for="'star3-' + ${iterStat.index}"></label>-->
+<!--					                <input value="2" th:name="'rating-' + ${iterStat.index}" th:id="'star2-' + ${iterStat.index}" type="radio" th:checked="${review.stars == 2}" disabled>-->
+<!--					                <label th:for="'star2-' + ${iterStat.index}"></label>-->
+<!--					                <input value="1" th:name="'rating-' + ${iterStat.index}" th:id="'star1-' + ${iterStat.index}" type="radio" th:checked="${review.stars == 1}" disabled>-->
+<!--					                <label th:for="'star1-' + ${iterStat.index}"></label>-->
+<!--					            </div>-->
+<!--					            <div class="review-text" th:text="${review.descrizione}"></div>-->
+<!--					        </div>-->
+					        
+<!--					        <div style="display: inline-block;">-->
+<!--								<form form th:action="@{'/product/delete/' + ${review.id}}" method="post">-->
+<!--									<button >elimina</button>-->
+<!--								</form>-->
+							
+<!--							</div>-->
+					        
+					        
+					        
+<!--					    </li>-->
+<!--					</ul>-->
+						
+<!--			</div>-->
+			
+			
+			
+			
+<!--		</div>-->
+		
+		
+			
+<!--	</div>-->
+
+
+<!--    </div>-->
+    
+    
+    
+    
+<!--</body>-->
+
+<!--</html>-->
+
+
+
 <!DOCTYPE html>
 <html>
 
@@ -5,39 +179,62 @@
 	<title>
 		TrueFeedback
 	</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link rel="stylesheet" href="/css/main-style.css"/>
 	<link rel="stylesheet" href="/css/product.css"/>
+	<link rel="stylesheet" href="/css/topbar.css"/>
 </head>
 
 <body>
 	
-	    <div class="main-container">
-        <div class="topbar">
-            <a href="/">
-                <div class="title">
-                    TrueFeedback
-                </div>
-            </a>
-            <div class="userInfo">
-                <div th:if="${userDetails}">
-                    <span th:text="${userDetails.username}"></span>
-                    <a href="/logout">Logout</a>
-                </div>
-                <div th:unless="${userDetails}">
-                    <a href="/login">Login</a>
-                </div>
+    <div class="topbar">
+        <a class="title" href="/">
+            TrueFeedback
+        </a>
+        <div class="categories-dropdown">
+            <button class="dropdown-button">
+                <i class="fas fa-bars"></i>
+                <h1>Tutte le categorie</h1>
+            </button>
+            <div class="dropdown-content">
+                <div th:each="category : ${categories}">
+					<a th:href="@{'/category/' + ${category}}" th:text="${category}"></a>
+				</div>
+            </div>
+        </div>
+        <div class="search-container">
+            <div class="search-bar">
+                <form th:action="@{/search}" method="POST">
+                    <input type="text" class="search-bar-input" name="keyword" placeholder="Cerca..." autocomplete="off">
+                    <button class="search-bar-button" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="userInfo" th:if="${userDetails}">
+
+                <a class="login-icon" href="/profile">
+                    <i class="fas fa-user"></i>
+				</a>
+            </div>
+            
+            
+            <div class="userInfo" th:unless="${userDetails}">
+				<a class="login-icon" href="/login">
+					<i class="fas fa-sign-in-alt"></i>
+				</a>
             </div>
         </div>
 	
-	<div class="product-container"></div>
 	
-	<div th:if="${product}">
+	<div class="product-container" th:if="${product}">
 		
 		<div class="product-name" th:text="${product.name}"></div>
 		<div class="product-brand" >DeWALT</div>
-		<div class="delete-product">
+		<div >
 			<form th:action="@{'/delete/' + ${product.id}}" method="post">
-				<button type="submit"> elimina</button>
+				<button class="delete-product" type="submit"> Elimina il prodotto</button>
 			</form>
 		</div>
 		
@@ -81,7 +278,7 @@
 					
 					<div class="review-add-box">
 						
-						<div th:if="${userDetails}">
+						<div class="add-box-text" th:if="${userDetails}">
 						
 						Aggiungi la tua recensione
 						
@@ -95,8 +292,8 @@
 						</div>
 										    
 		    				
-						<div th:unless="${userDetails}">
-                    		<a href="/login">Devi fare il login per recensire un prodotto</a>
+						<div class="add-box-text-nolog" th:unless="${userDetails}">
+                    		<a href="/login">Devi fare il login prima di recensire un prodotto</a>
                 		</div>
 						
 						
@@ -113,11 +310,10 @@
 							Non ci sono ancora recensioni per questo prodotto
 						</div>
 						
-						<ul class="users-review">
 					    <li class="users-review" th:each="review, iterStat : ${reviews}">
 					        <div class="flex-item">
-									
-										<a class="username" th:href="@{'/user/' + ${review.nomeUtente}}">
+									<div>
+										<a class="review-username" th:href="@{'/user/' + ${review.nomeUtente}}">
 											<div th:text="${review.nomeUtente}"></div>
 										</a>
 									
@@ -134,20 +330,24 @@
 					                <input value="1" th:name="'rating-' + ${iterStat.index}" th:id="'star1-' + ${iterStat.index}" type="radio" th:checked="${review.stars == 1}" disabled>
 					                <label th:for="'star1-' + ${iterStat.index}"></label>
 					            </div>
-					            <div class="review-text" th:text="${review.descrizione}"></div>
-					        </div>
-					        
-					        <div style="display: inline-block;">
-								<form form th:action="@{'/product/delete/' + ${review.id}}" method="post">
-									<button >elimina</button>
+					            
+					            <div class="delete-review">
+								<form form th:action="@{'/product/' + ${product.id} + '/delete/' + ${review.id}}" method="post">
+									<button class="delete-button">elimina</button>
 								</form>
 							
 							</div>
-					        
-					        
-					        
+					            
+									</div>
+										
+					            <div class="review-text" th:text="${review.descrizione}"></div>
+					            
+					            
+					            
+					        </div>
+					            
+					        </div>
 					    </li>
-					</ul>
 						
 			</div>
 			
@@ -158,10 +358,8 @@
 		
 		
 			
-	</div>
 
 
-    </div>
     
     
     

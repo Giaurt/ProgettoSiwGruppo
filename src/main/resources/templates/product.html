@@ -5,6 +5,8 @@
 	<title>
 		TrueFeedback
 	</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/css/main-style.css"/>
 	<link rel="stylesheet" href="/css/product.css"/>
 	<link rel="stylesheet" href="/css/topbar.css"/>
@@ -12,8 +14,7 @@
 
 <body>
 	
-<!--	    <div class="main-container">-->
-            <div class="topbar">
+       <div class="topbar">
         <a class="title" href="/">
             TrueFeedback
         </a>
@@ -41,19 +42,18 @@
         <div class="userInfo" th:if="${userDetails}">
 
                 <a class="login-icon" href="/profile">
-					<img  src="/images/user-white.png" style="width: 60%;">
+                    <i class="fas fa-user"></i>
 				</a>
             </div>
             
-            <div th:unless="${userDetails}">
+            
+            <div class="userInfo" th:unless="${userDetails}">
 				<a class="login-icon" href="/login">
-					<img  src="/images/login-white.png" style="width: 60%;">
+					<i class="fas fa-sign-in-alt"></i>
 				</a>
-						 
             </div>
         </div>
 	
-	<div >
 	
 	<div class="product-container" th:if="${product}">
 		
@@ -100,7 +100,7 @@
 					
 					<div class="review-add-box">
 						
-						<div th:if="${userDetails}">
+						<div class="add-box-text" th:if="${userDetails}">
 						
 						Aggiungi la tua recensione
 						
@@ -114,8 +114,8 @@
 						</div>
 										    
 		    				
-						<div th:unless="${userDetails}">
-                    		<a href="/login" style="color: rgb(221, 221, 221);">Devi fare il login per recensire un prodotto</a>
+						<div class="add-box-text-nolog" th:unless="${userDetails}">
+                    		<a href="/login">Devi fare il login prima di recensire un prodotto</a>
                 		</div>
 						
 						
@@ -132,11 +132,10 @@
 							Non ci sono ancora recensioni per questo prodotto
 						</div>
 						
-						<ul class="users-review">
 					    <li class="users-review" th:each="review, iterStat : ${reviews}">
 					        <div class="flex-item">
-									
-										<a class="username" th:href="@{'/user/' + ${review.nomeUtente}}">
+									<div>
+										<a class="review-username" th:href="@{'/user/' + ${review.nomeUtente}}">
 											<div th:text="${review.nomeUtente}"></div>
 										</a>
 									
@@ -153,10 +152,11 @@
 					                <input value="1" th:name="'rating-' + ${iterStat.index}" th:id="'star1-' + ${iterStat.index}" type="radio" th:checked="${review.stars == 1}" disabled>
 					                <label th:for="'star1-' + ${iterStat.index}"></label>
 					            </div>
+									</div>
+										
 					            <div class="review-text" th:text="${review.descrizione}"></div>
 					        </div>
 					    </li>
-					</ul>
 						
 			</div>
 			
@@ -168,13 +168,7 @@
 		
 			
 	</div>
-	</div>
-
-
-<!--    </div>-->
-    
-    
-    
+	
     
 </body>
 

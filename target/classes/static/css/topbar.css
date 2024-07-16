@@ -1,5 +1,5 @@
 .topbar {
-    background-color: rgb(25, 25, 25);
+    background-color: #1f2029;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -20,20 +20,13 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/*.topbar {*/
-/*    background-color: rgb(25, 25, 25);*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: space-between;*/
-/*    width: 100%;*/
-/*    height: var(--topbar-height);*/
-/*}*/
+.login-icon{
+	margin-right: 40px;
+	font-size: 30px;
+	color: white;
+}
 
-/*.title {*/
-/*    font-size: 2rem;*/
-/*    color: white;*/
-/*    text-decoration: none;*/
-/*}*/
+
 
 
 .add-product-button {

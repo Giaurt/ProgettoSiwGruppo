@@ -92,11 +92,11 @@ public class ProductController {
 		}
 	}
 	
-	@GetMapping("/products")
-	public String showProduct(Model model) {
-		model.addAttribute("products", this.productService.findAll());
-		return "products.html";
-	}
+//	@GetMapping("/products")
+//	public String showProduct(Model model) {
+//		model.addAttribute("products", this.productService.findAll());
+//		return "products.html";
+//	}
 	
 	
 	@GetMapping(value="/admin/newproduct")
@@ -192,12 +192,12 @@ public class ProductController {
 	    }
 	}
 
-	@PostMapping(value = "/product/delete/{id}")
-    public String deleteRicetta(@PathVariable("id") Long id) {
+	@PostMapping(value = "/product/{productId}/delete/{reviewId}")
+    public String deleteReview(@PathVariable("reviewId") Long id, @PathVariable("productId") String productId) {
         
-        reviewService.deleteRicettaById(id);
+        reviewService.deleteReviewById(id);
         
-        return "redirect:/product";
+        return "redirect:/products/" + productId;
     }
 
 	@GetMapping(value = "/category/{category}")

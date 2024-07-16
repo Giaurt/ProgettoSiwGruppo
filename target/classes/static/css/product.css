@@ -9,12 +9,10 @@
 	font-size: 50px;
 }
 .product-brand{
-/*	padding: 0px 0px 30px 500px;*/
 	font-size: 20px;
 }
 .product-image{
-
-/*	margin-left: 500px;*/
+	border-radius: 3px;
 	margin-top: 30px;
 	height: 100px;
 	
@@ -23,6 +21,7 @@
 	display: inline-block;
 	width: 500px;
 	box-shadow: -10px 10px 40px rgb(145, 145, 145);
+	border-radius: 6px;
 }
 .product-description{
 	display: inline-block;
@@ -32,6 +31,7 @@
 	padding: 40px 0px 0px 40px;
 	vertical-align: top;
 	box-shadow: 0px 10px 40px rgb(145, 145, 145);
+	border-radius: 6px;
 }
 .review-container{
 	display: flex;
@@ -39,52 +39,66 @@
 	align-items: center;
 	flex-direction: column;
 	height: 300px;
-	margin-top: 450px;
-	padding: 0px 10px 30px 0px;
+	width: 1000px;
+	margin: 450px 0px 0px 0px;
 	font-size: 60px;
 
 	
 }
 .reviews{
-	width: 70%;
+	width: 100%;
 	height: 200px;
-/*	background-color: rgba(255, 255, 255, 70%);*/
 }
 .add-review{
 	padding-top: 20px;
 }
 .review-add-box{
-	color: aliceblue;
 	height: 150px;
-	background-color: #2a2b38;
+	background-color: #1f2029;
 	margin: 0px 20px 0px 20px;
 	box-shadow: 0px 5px 20px rgb(145, 145, 145);
+	border-radius: 6px;
+}
+.add-box-text{
+	color: aliceblue;
+	padding: 20px 10px 8px 100px;
+	font-size: 40px;
+	border-radius: 6px;	
+}
+.add-box-text-nolog{
+	padding: 20px 10px 8px 100px;
+	font-size: 40px;
+	border-radius: 6px;
 }
 .users-review{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	background-color: #2a2b38;
+	background-color: #1f2029;
+	border-radius: 6px;
 	margin: 20px 0px 10px 0px;
-	padding: 0px 10px 0px 10px;
+	padding: 30px 20px 0px 20px;
 }
 .flex-item{
-	display: inline-block;
-	background-color: #1f2029;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+
+	background-color: rgb(54, 55, 73);
 	word-wrap: break-word;
-/*	box-shadow: 0px 5px 20px rgb(159, 159, 159);*/
-	margin: 10px 0px 20px 0px;
+	margin: 10px 10px 30px 10px;
 }
 .flex-item:hover{
 	border: 3px solid #676f9d;;
 }
 .review-username{
-	font-size: 40px;
-	border-bottom: 3px solid #676f9d;
+	display: inline-block;
+	vertical-align: top;
+	margin: 20px 0px 0px 20px;
+	color: aliceblue;
+	font-size: 35px;
 }
-.review-content{
-	font-size: 25px;
-}
+
 .username{
 	display: inline-block;
 	margin: 0px 0px 0px 10px;
@@ -92,6 +106,8 @@
 }
 .review-text{
 	color: aliceblue;
+	font-size: 30px;
+	margin: 20px 0px 10px 10px;
 }
 
 
@@ -109,6 +125,7 @@
 }
 
 .rating label {
+
   float: right;
   cursor: pointer;
   color: #ccc;
@@ -124,32 +141,24 @@
   color: #6f00ff;; /* Colore stelle selezionate */
 }
 
-/*.rating input:checked ~ label*/
-/*.rating label:hover,*/
-/*.rating label:hover ~ label {*/
-/*  color: #6f00ff;*/
-/*  transition: color 0.3s;*/
-/*}*/
-/*.star-filled {*/
-/*  color: rgb(241, 236, 35);*/
-/*}*/
-
-
-/*.rating {*/
-/*    display: flex;*/
-/*    direction: row-reverse;*/
-/*    justify-content: center;*/
-/*    padding: 0;*/
-/*}*/
-/*.rating input {*/
-/*    display: none;*/
-/*}*/
-/*.rating label {*/
-/*    cursor: default;  Cambia il cursore per indicare che non è cliccabile */
-/*    width: 1em;*/
-/*    font-size: 3rem;*/
-/*    color: #FFD700;*/
-/*}*/
-/*.rating input:checked ~ label {*/
-/*    color: #FFD700;*/
-/*}*/
+.delete-product{
+	margin-top: 20px;
+	font-size: 20px;
+	width: 130px;
+	height: 60px;
+	border-radius: 6px;
+	color: #1f2029; 
+	background-color: rgb(227, 230, 230);
+}
+.delete-product:hover{
+	background-color: #1f2029;
+	color: rgb(227, 230, 230);;
+}
+.delete-review{
+	display: inline-block;
+	vertical-align: text-top;
+}
+.delete-button{
+	margin: 20px 0px 0px 20px;
+	vertical-align: top;
+}

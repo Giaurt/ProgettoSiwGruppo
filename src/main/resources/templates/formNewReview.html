@@ -5,45 +5,118 @@
 	<title>
 		New Review
 	</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 	<link rel="stylesheet" href="/css/main-style.css" />
 	<link rel="stylesheet" href="/css/formNewReview.css" />
+	<link rel="stylesheet" href="/css/topbar.css" />
 </head>
 
 <body>
+	
+	<div class="topbar">
+        <a class="title" href="/">
+            TrueFeedback
+        </a>
+        <div class="categories-dropdown">
+            <button class="dropdown-button">
+                <i class="fas fa-bars"></i>
+                <h1>Tutte le categorie</h1>
+            </button>
+            <div class="dropdown-content">
+                <div th:each="category : ${categories}">
+					<a th:href="@{'/category/' + ${category}}" th:text="${category}"></a>
+				</div>
+            </div>
+        </div>
+        <div class="search-container">
+            <div class="search-bar">
+                <form th:action="@{/search}" method="POST">
+                    <input type="text" class="search-bar-input" name="keyword" placeholder="Cerca..." autocomplete="off">
+                    <button class="search-bar-button" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="userInfo" th:if="${userDetails}">
 
-	<h1>Aggiungi una recensione </h1>
-	<form th:action="@{'/newReview'+ '/' + ${product.id}}" method="POST" th:object="${review}">
+                <a class="login-icon" href="/profile">
+                    <i class="fas fa-user"></i>
+				</a>
+            </div>
+            
+            
+            <div class="userInfo" th:unless="${userDetails}">
+				<a class="login-icon" href="/login">
+					<i class="fas fa-sign-in-alt"></i>
+				</a>
+            </div>
+        </div>
+	
+
+<!--	<h1>Aggiungi una recensione </h1>-->
+<!--	<form th:action="@{'/newReview'+ '/' + ${product.id}}" method="POST" th:object="${review}">-->
 <!--  		<div th:if="${#fields.hasGlobalErrors()}">-->
 <!--  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> -->
 <!--  		</div>-->
 		
-		<div class="rating">
-            <input value="1" name="stars" id="star5" type="radio" th:field="${review.stars}">
-            <label for="star5">&#9733;</label>
-            <input value="2" name="stars" id="star4" type="radio" th:field="${review.stars}">
-            <label for="star4">&#9733;</label>
-            <input value="3" name="stars" id="star3" type="radio" th:field="${review.stars}">
-            <label for="star3">&#9733;</label>
-            <input value="4" name="stars" id="star2" type="radio" th:field="${review.stars}">
-            <label for="star2">&#9733;</label>
-            <input value="5" name="stars" id="star1" type="radio" th:field="${review.stars}">
-            <label for="star1">&#9733;</label>
-        </div>
+<!--		<div class="rating">-->
+<!--            <input value="1" name="stars" id="star5" type="radio" th:field="${review.stars}">-->
+<!--            <label for="star5">&#9733;</label>-->
+<!--            <input value="2" name="stars" id="star4" type="radio" th:field="${review.stars}">-->
+<!--            <label for="star4">&#9733;</label>-->
+<!--            <input value="3" name="stars" id="star3" type="radio" th:field="${review.stars}">-->
+<!--            <label for="star3">&#9733;</label>-->
+<!--            <input value="4" name="stars" id="star2" type="radio" th:field="${review.stars}">-->
+<!--            <label for="star2">&#9733;</label>-->
+<!--            <input value="5" name="stars" id="star1" type="radio" th:field="${review.stars}">-->
+<!--            <label for="star1">&#9733;</label>-->
+<!--        </div>-->
 		
 		
-		<div>
-			<label>Nome:</label> 
-			<span><input type="text" th:field="${review.descrizione}" /></span>
-		</div>
+<!--		<div>-->
+<!--			<label>Nome:</label> -->
+<!--			<span><input type="text" th:field="${review.descrizione}" /></span>-->
+<!--		</div>-->
 		
 		
 
 		
 		
-		<div>
-			<span><button type="submit">Conferma</button></span>
-		</div>
-	</form>
+<!--		<div>-->
+<!--			<span><button type="submit">Conferma</button></span>-->
+<!--		</div>-->
+<!--	</form>-->
+	
+	
+	<div class="card">
+  		<h4 class="card-title">Aggiungi una recensione</h4>
+  		<form th:action="@{'/newReview'+ '/' + ${product.id}}" method="POST" th:object="${review}">
+			  <div class="field">
+	  		    <div class="rating">
+		            <input value="1" name="stars" id="star5" type="radio" th:field="${review.stars}">
+		            <label for="star5"></label>
+		            <input value="2" name="stars" id="star4" type="radio" th:field="${review.stars}">
+		            <label for="star4"></label>
+		            <input value="3" name="stars" id="star3" type="radio" th:field="${review.stars}">
+		            <label for="star3"></label>
+		            <input value="4" name="stars" id="star2" type="radio" th:field="${review.stars}">
+		            <label for="star2"></label>
+		            <input value="5" name="stars" id="star1" type="radio" th:field="${review.stars}">
+		            <label for="star1"></label>
+		        </div>
+  		  </div>
+  		  <div class="field">
+  		    <div>
+				<label class="content-title">Cosa ne pensi:</label> 
+				<div><textarea class="input-review" placeholder="Inserisci testo..." type="text" th:field="${review.descrizione}" /></div>
+			</div>
+  		  </div>
+  		  
+
+  		  <button class="btn" type="submit">Conferma</button>
+  		</form>
+	</div>
 </body>
 
 </html>
