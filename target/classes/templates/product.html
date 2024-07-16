@@ -7,55 +7,31 @@
 	</title>
 	<link rel="stylesheet" href="/css/main-style.css"/>
 	<link rel="stylesheet" href="/css/product.css"/>
-	<link rel="stylesheet" href="/css/topbar.css"/>
 </head>
 
 <body>
 	
-<!--	    <div class="main-container">-->
-            <div class="topbar">
-        <a class="title" href="/">
-            TrueFeedback
-        </a>
-        <div class="categories-dropdown">
-            <button class="dropdown-button">
-                <i class="fas fa-bars"></i>
-                <h1>Tutte le categorie</h1>
-            </button>
-            <div class="dropdown-content">
-                <div th:each="category : ${categories}">
-					<a th:href="@{'/category/' + ${category}}" th:text="${category}"></a>
-				</div>
-            </div>
-        </div>
-        <div class="search-container">
-            <div class="search-bar">
-                <form th:action="@{/search}" method="POST">
-                    <input type="text" class="search-bar-input" name="keyword" placeholder="Cerca..." autocomplete="off">
-                    <button class="search-bar-button" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-        <div class="userInfo" th:if="${userDetails}">
-
-                <a class="login-icon" href="/profile">
-					<img  src="/images/user-white.png" style="width: 60%;">
-				</a>
-            </div>
-            
-            <div th:unless="${userDetails}">
-				<a class="login-icon" href="/login">
-					<img  src="/images/login-white.png" style="width: 60%;">
-				</a>
-						 
+	    <div class="main-container">
+        <div class="topbar">
+            <a href="/">
+                <div class="title">
+                    TrueFeedback
+                </div>
+            </a>
+            <div class="userInfo">
+                <div th:if="${userDetails}">
+                    <span th:text="${userDetails.username}"></span>
+                    <a href="/logout">Logout</a>
+                </div>
+                <div th:unless="${userDetails}">
+                    <a href="/login">Login</a>
+                </div>
             </div>
         </div>
 	
-	<div >
+	<div class="product-container"></div>
 	
-	<div class="product-container" th:if="${product}">
+	<div th:if="${product}">
 		
 		<div class="product-name" th:text="${product.name}"></div>
 		<div class="product-brand" >DeWALT</div>
@@ -115,7 +91,7 @@
 										    
 		    				
 						<div th:unless="${userDetails}">
-                    		<a href="/login" style="color: rgb(221, 221, 221);">Devi fare il login per recensire un prodotto</a>
+                    		<a href="/login">Devi fare il login per recensire un prodotto</a>
                 		</div>
 						
 						
@@ -168,10 +144,9 @@
 		
 			
 	</div>
-	</div>
 
 
-<!--    </div>-->
+    </div>
     
     
     

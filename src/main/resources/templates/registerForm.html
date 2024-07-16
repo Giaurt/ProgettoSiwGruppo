@@ -7,54 +7,38 @@
     </title>
     <link rel="stylesheet" href="/css/main-style.css"/>
     <link rel="stylesheet" href="/css/registerForm.css"/>
-    <link rel="stylesheet" href="/css/topbar.css"/>
-    <link rel="stylesheet" href="/css/index.css"/>
 </head>
 
 <body>
 
-<!--		<div class="main-container">-->
-<!--<header>-->
-    <div class="topbar">
-        <a class="title" href="/">
-            TrueFeedback
-        </a>
-        <div class="categories-dropdown">
-            <button class="dropdown-button">
-                <i class="fas fa-bars"></i>
-                <h1>Tutte le categorie</h1>
-            </button>
-            <div class="dropdown-content">
-                <div th:each="category : ${categories}">
-					<a th:href="@{'/category/' + ${category}}" th:text="${category}"></a>
-				</div>
-            </div>
-        </div>
-        <div class="search-container">
-            <div class="search-bar">
-                <form th:action="@{/search}" method="POST">
-                    <input type="text" class="search-bar-input" name="keyword" placeholder="Cerca..." autocomplete="off">
-                    <button class="search-bar-button" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-        <div class="userInfo" th:if="${userDetails}">
+		<div class="main-container">
+<header>
+<!--    <div th:if="${userDetails}">-->
+<!--        <span th:text="${userDetails.username}"></span>-->
+<!--        <a href="/logout">Logout</a>-->
+<!--    </div>-->
+<!--    <div th:unless="${user}">-->
+<!--        <a href="/login">Login</a>-->
+<!--    </div>-->
 
-                <a class="login-icon" href="/profile">
-					<img  src="/images/user-white.png" style="width: 60%;">
-				</a>
+
+
+    <div class="topbar">
+        <a href="/">
+            <div class="title">
+                TrueFeedback
             </div>
-            
-            
-            <div th:unless="${userDetails}">
-				<a class="login-icon" href="/login">
-					<img  src="/images/login-white.png" style="width: 60%;">
-				</a>
-						 
+        </a>
+        <div class="userInfo">
+            <div th:if="${userDetails}">
+                <span th:text="${userDetails.username}"></span>
+                <a href="/logout">Logout</a>
+            </div>
+            <div th:unless="${user}">
+                <a href="/login">Login</a>
             </div>
         </div>
+    </div>
 	
 
 
@@ -62,7 +46,7 @@
 
 
 
-<!--</header>-->
+</header>
 
 
 <div class="card">
@@ -88,7 +72,7 @@
   </form>
 </div>
 
-<!--</div>-->
+</div>
 
 
 </body>

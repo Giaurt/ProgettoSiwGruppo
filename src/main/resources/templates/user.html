@@ -5,73 +5,52 @@
 	<title>
 		TrueFeedback
 	</title>
-	<link rel="stylesheet" href="/css/profile.css"/>
-	<link rel="stylesheet" href="/css/topbar.css"/>
+	<link rel="stylesheet" href="/css/main-style.css"/>
+	<link rel="stylesheet" href="/css/user.css"/>
 </head>
 
 <body>
 	
-<!--	    <div class="main-container">-->
-	
+	    <div class="main-container">
         <div class="topbar">
-        <a class="title" href="/">
-            TrueFeedback
-        </a>
-        <div class="categories-dropdown">
-            <button class="dropdown-button">
-                <i class="fas fa-bars"></i>
-                <h1>Tutte le categorie</h1>
-            </button>
-            <div class="dropdown-content">
-                <div th:each="category : ${categories}">
-					<a th:href="@{'/category/' + ${category}}" th:text="${category}"></a>
-				</div>
-            </div>
-        </div>
-        <div class="search-container">
-            <div class="search-bar">
-                <form th:action="@{/search}" method="POST">
-                    <input type="text" class="search-bar-input" name="keyword" placeholder="Cerca..." autocomplete="off">
-                    <button class="search-bar-button" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-        <div class="userInfo" th:if="${userDetails}">
-
-                <a class="login-icon" href="/profile">
-					<img  src="/images/user-white.png" style="width: 60%;">
-				</a>
-            </div>
-            
-            
-            <div th:unless="${userDetails}">
-				<a class="login-icon" href="/login">
-					<img  src="/images/login-white.png" style="width: 60%;">
-				</a>
-						 
+            <a href="/">
+                <div class="title">
+                    TrueFeedback
+                </div>
+            </a>
+            <div class="userInfo">
+                <div th:if="${userDetails}">
+                    <span th:text="${userDetails.username}"></span>
+                    <a href="/logout">Logout</a>
+                </div>
+                <div th:unless="${userDetails}">
+                    <a href="/login">Login</a>
+                </div>
             </div>
         </div>
 	
+	<div class="profile-container"></div>
 	
-<!--	<div th:if="${userDetails}">-->
+	<div th:if="${userDetails}">
 		
-		<div class="user" th:text="'Utente: ' + ${userCredential.username}">
+		<div class="user" th:text="'User: ' + ${userCredential.username}">
 			
 		</div>
 		
-		<div class="no-review" th:if="${#lists.isEmpty(reviews)}">
-		    <a href="/">Non hai ancora lasciato recensioni</a>
-		</div>
-		
-		<li class="users-review" th:unless="${#lists.isEmpty(reviews)}" th:each="review : ${reviews}">
-			
-			<div class="review-product-line">
-				
-				
-									 <div style="display: inline-block;">
-										 <a class="flex-item">
+		<ul class="users-review" th:if="reviews != null">
+                        <li class="users-review" th:each="review : ${reviews}">
+							<div class="review-product">
+								
+								<a class="product-brand" th:href="@{'/products/' + ${review.prodotto.id}}">
+							                <div  th:text="${review.prodotto.marca}"></div>
+							            </a>
+										 
+										 <a class="product-name" th:href="@{'/products/' + ${review.prodotto.id}}">
+							                <div  th:text="${review.prodotto.name}"></div>
+							            </a>
+										 
+									 </div>
+                            <a class="flex-item">
 								
 									
 									<div class="username" th:text="${review.nomeUtente}"></div>
@@ -90,34 +69,33 @@
 
 
                                 <div class="review-text" th:text="${review.descrizione}"></div>
-                               
+									
+									
+									 
+									 
+									 
+									 
+                                
                                 
                             </a>
-									 </div>
-									 
-									 <div class="review-product">
+                           
 								
-								<a class="product-brand" th:href="@{'/products/' + ${review.prodotto.id}}">
-							                <div  th:text="${review.prodotto.marca} "></div>
-							            </a>
-										 
-										 <a class="product-name" th:href="@{'/products/' + ${review.prodotto.id}}">
-							                <div  th:text="${review.prodotto.name}"></div>
-							            </a>
-										 
-									 </div>
-				
-				
-				
-			</div>
-			 
+								
+								
                             
+								
+                        </li>
+                    </ul>
+		
+		
 			
-		</li>
-		
-		
-		
-		
+	</div>
+
+
+    </div>
+    
+    
+    
     
 </body>
 

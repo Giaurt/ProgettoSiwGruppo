@@ -1,64 +1,59 @@
 .product-container{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
+
 }
 .product-name{
-	padding: 10px 0px 10px 0px;
+	background-color: #676f9d;
+	padding: 10px 0px 10px 500px;
 	font-size: 50px;
 }
 .product-brand{
-/*	padding: 0px 0px 30px 500px;*/
+	background-color: #676f9d;
+	padding: 0px 0px 30px 500px;
 	font-size: 20px;
 }
 .product-image{
 
-/*	margin-left: 500px;*/
+	margin-left: 500px;
 	margin-top: 30px;
 	height: 100px;
-	
+
 }
 .image{
 	display: inline-block;
 	width: 500px;
-	box-shadow: -10px 10px 40px rgb(145, 145, 145);
+	box-shadow: -10px 10px 40px #1f2029;
 }
 .product-description{
 	display: inline-block;
 	height: 460px;
 	width: 400px;
-	background-color: rgba(255, 255, 255, 70%);
+	background-color: #676f9d;
 	padding: 40px 0px 0px 40px;
 	vertical-align: top;
-	box-shadow: 0px 10px 40px rgb(145, 145, 145);
+	box-shadow: 0px 10px 40px #1f2029;
 }
 .review-container{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
 	height: 300px;
 	margin-top: 450px;
-	padding: 0px 10px 30px 0px;
+	padding: 0px 10px 30px 500px;
 	font-size: 60px;
 
-	
+
 }
 .reviews{
 	width: 70%;
 	height: 200px;
-/*	background-color: rgba(255, 255, 255, 70%);*/
+	background-color: #676f9d;
+	font-size: 40px;
 }
 .add-review{
 	padding-top: 20px;
 }
 .review-add-box{
-	color: aliceblue;
 	height: 150px;
 	background-color: #2a2b38;
 	margin: 0px 20px 0px 20px;
-	box-shadow: 0px 5px 20px rgb(145, 145, 145);
+	box-shadow: 0px 5px 20px #1f2029;
 }
 .users-review{
 	display: flex;
@@ -101,7 +96,6 @@
 
 .rating {
   display: inline-block;
-
 }
 
 .rating input {
@@ -121,7 +115,7 @@
 }
 .rating input:checked + label,
 .rating input:checked + label ~ label {
-  color: #6f00ff;; /* Colore stelle selezionate */
+  color: #6f00ff; /* Colore stelle selezionate */
 }
 
 /*.rating input:checked ~ label*/
@@ -130,9 +124,9 @@
 /*  color: #6f00ff;*/
 /*  transition: color 0.3s;*/
 /*}*/
-/*.star-filled {*/
-/*  color: rgb(241, 236, 35);*/
-/*}*/
+.star-filled {
+  color: #6f00ff;
+}
 
 
 /*.rating {*/

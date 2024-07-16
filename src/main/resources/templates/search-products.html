@@ -7,52 +7,22 @@
     </title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
-    <link rel="stylesheet" href="/css/search-products.css"/>
-    <link rel="stylesheet" href="/css/topbar.css"/>
-    <link rel="stylesheet" href="/css/main-style.css"/>
+    <link rel="stylesheet" href="../static/css/search-products.css"/>
 </head>
 
 <body>
     <div class="topbar">
-        <a class="title" href="/">
-            TrueFeedback
-        </a>
-        <div class="categories-dropdown">
-            <button class="dropdown-button">
-                <i class="fas fa-bars"></i>
-                <h1>Tutte le categorie</h1>
-            </button>
-            <div class="dropdown-content">
-                <div th:each="category : ${categories}">
-					<a th:href="@{'/category/' + ${category}}" th:text="${category}"></a>
-				</div>
-            </div>
-        </div>
-        <div class="search-container">
-            <div class="search-bar">
-                <form th:action="@{/search}" method="POST">
-                    <input type="text" class="search-bar-input" name="keyword" placeholder="Cerca..." autocomplete="off">
-                    <button class="search-bar-button" type="submit">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-        <div class="userInfo" th:if="${userDetails}">
+        <div class="title">TrueFeedback</div>
 
-                <a class="login-icon" href="/profile">
-					<img  src="/images/user-white.png" style="width: 60%;">
-				</a>
-            </div>
-            
-            
-            <div th:unless="${userDetails}">
-				<a class="login-icon" href="/login">
-					<img  src="/images/login-white.png" style="width: 60%;">
-				</a>
-						 
+        <div class="search-container">
+            <div class="search-bar-box">
+                <form action="/search" method="GET">
+                    <input type="text" class="search-bar-input" name="txt" onmouseout="this.value = ''; this.blur();">
+                </form>
+                <i class="fas fa-search"></i>
             </div>
         </div>
+    </div>
 
     <div class="content">
         <div class="outside-box">
@@ -60,7 +30,9 @@
                 <div class="n-results">
                     <p><b>Prodotti trovati: <span th:text="${#lists.size(products)}" style="color: rgb(255, 150, 20)"></span></b></p>
                 </div>
-                
+                <div class="filter">
+                    <h1>Placeholder filtro</h1>
+                </div>
             </div>
             <div class="products-container" th:each="product : ${products}">
                 <div class="product">
@@ -81,11 +53,11 @@
                     </a>
                 </div>
             </div>
-<!--            <div class="related-products-container">-->
-<!--                <div class="related">-->
-<!--                    <h1>Placeholder for related</h1>-->
-<!--                </div>-->
-<!--            </div>-->
+            <div class="related-products-container">
+                <div class="related">
+                    <h1>Placeholder for related</h1>
+                </div>
+            </div>
         </div>
     </div>
 </body>

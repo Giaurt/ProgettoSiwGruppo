@@ -8,6 +8,5 @@ public enum Category {
     Sandy,
     Solomon,
     Dolly,
-    ChristineNonForgetta,
-    tools
+    ChristineNonForgetta
 }
