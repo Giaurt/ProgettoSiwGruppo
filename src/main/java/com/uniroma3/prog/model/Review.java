@@ -9,6 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -25,7 +26,7 @@ public class Review {
 	private int stars;
 	@Column(nullable = false)
 	private String descrizione;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "prodotto_id")
 	private Product prodotto;
 	public Long getId() {

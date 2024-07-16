@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="/css/main-style.css"/>
     <link rel="stylesheet" href="/css/topbar.css"/>
+    <link rel="stylesheet" href="/css/login-icon.css"/>
 
     <link rel="stylesheet" href="/css/index.css"/>
 </head>
@@ -27,9 +28,9 @@
                 <h1>Tutte le categorie</h1>
             </button>
             <div class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+                <div th:each="category : ${categories}">
+					<a th:href="@{'/category/' + ${category}}" th:text="${category}"></a>
+				</div>
             </div>
         </div>
         <div class="search-container">
@@ -42,35 +43,41 @@
                 </form>
             </div>
         </div>
-        <div class="userInfo">
-            <div th:if="${userDetails}">
-                <span th:text="${userDetails.username}"></span>
-                <a href="/logout">Logout</a>
+        <div class="userInfo" th:if="${userDetails}">
+
+                <a class="login-icon" href="/profile">
+					<img  src="/images/user-white.png" style="width: 60%;">
+				</a>
             </div>
-
-
+            
+            
             <div class="userInfo" th:unless="${userDetails}">
 				<a class="login-icon" href="/login">
 					<img  src="/images/login-white.png" style="width: 60%;">
 				</a>
-
+						 
             </div>
         </div>
-    </div>
 
-    <div class="content">
-        <div class="categories-container">
-            <div class="category-box" th:each="category : ${categories}">
-                <h1 th:text="${category}"></h1>
-                <div class="category-img">
-                    <img src="https://images-eu.ssl-images-amazon.com/images/G/29/marketing/prime/reduce_size_1._SY304_CB570029445_.jpg">
-                </div>
-                <div class="category-ref">
-                    <a href="/">Scopri di più</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</body>
+
+	<div class="content">
+	    <div class="categories-container">
+	        <div class="category-box" th:each="category : ${categories}">
+	            <h1 th:text="${category}"></h1>
+	            <div th:each="product, iterStat : ${products}">
+	                <div th:if="${product.category.name() == category.name()}" th:unless="${iterStat.index > 0}">
+	                    <div class="category-img">
+	                        <img class="image" th:src="@{'data:image/jpeg;base64,' + ${product.image.generateBase64Image()}}" alt="Product Image"/>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="category-ref">
+	                <a th:href="@{'/category/' + ${category}}">Scopri di più</a>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+</body>	
 
 </html>

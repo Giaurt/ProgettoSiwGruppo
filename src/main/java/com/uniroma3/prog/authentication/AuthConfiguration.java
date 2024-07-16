@@ -49,7 +49,7 @@ public class AuthConfiguration {
         httpSecurity
                 .authorizeHttpRequests()
 //<<<<<<< Updated upstream
-                .requestMatchers(HttpMethod.GET, "/", "/index", "/register","/products","/products/**","/product/**", "/css/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/", "/index","/category/**", "/register","/products","/products/**","/product/**", "/css/**").permitAll()
 //=======
 //                .requestMatchers(HttpMethod.GET, "/", "/index", "/register","/products","/products/**","/product/**","/formNewProduct","/user/**", "/css/**").permitAll()
 //>>>>>>> Stashed changes
