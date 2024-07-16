@@ -5,8 +5,11 @@ import com.uniroma3.prog.model.User;
 import com.uniroma3.prog.service.CredentialsService;
 import com.uniroma3.prog.service.UserService;
 
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
@@ -26,16 +29,22 @@ public class AuthenticationController {
 
     @GetMapping(value = "/")
     public String index(Model model) {
-        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Credentials credentials = credentialsService.getCredentialsByUsername(userDetails.getUsername());
-        if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "redirect:/admin/index";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication instanceof AnonymousAuthenticationToken) {
+            return "redirect:/index";
         }
-
+        else {
+            UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            Credentials credentials = credentialsService.getCredentialsByUsername(userDetails.getUsername());
+            if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+                return "redirect:/admin/index";
+            }
+        }
         return "redirect:/index";
     }
 
     @GetMapping(value = "/profile")
+    @Transactional
     public String showProfile(Model model) {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentialsByUsername(userDetails.getUsername());
