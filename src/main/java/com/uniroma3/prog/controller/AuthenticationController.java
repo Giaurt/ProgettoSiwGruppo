@@ -1,7 +1,9 @@
 package com.uniroma3.prog.controller;
 
+import com.uniroma3.prog.model.Category;
 import com.uniroma3.prog.model.Credentials;
 import com.uniroma3.prog.model.User;
+import com.uniroma3.prog.repository.ProductRepository;
 import com.uniroma3.prog.service.CredentialsService;
 import com.uniroma3.prog.service.ProductService;
 import com.uniroma3.prog.service.UserService;
@@ -31,22 +33,31 @@ public class AuthenticationController {
     
     @Autowired 
     private ProductService productService;
+    @Autowired 
+    private ProductRepository productRepository;
 
     @GetMapping(value = "/")
     public String index(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        model.addAttribute("products", this.productService.findAll());
+        
         if (authentication instanceof AnonymousAuthenticationToken) {
+        	model.addAttribute("products", this.productRepository.findAll());
+            model.addAttribute("categories", Category.values());
             return "index";
         }
         else {
             UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
             Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
             if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+            	model.addAttribute("products", this.productRepository.findAll());
+                model.addAttribute("categories", Category.values());
                 return "admin/indexAdmin";
+            }else {
+            	model.addAttribute("products", this.productRepository.findAll());
+                model.addAttribute("categories", Category.values());
+                return "index.html";
             }
         }
-        return "index";
     }
 
     @GetMapping(value = "/profile")

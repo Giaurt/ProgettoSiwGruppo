@@ -74,9 +74,21 @@ public class ProductController {
 				model.addAttribute("reviews", this.reviewRepository.findByProdotto(product));
 				return "/admin/admin-product.html";
 		    
+		    }else {
+		    	Product product = productService.findById(id);
+				List<Review> reviews = reviewRepository.findByProdotto(product);
+
+		        int totalStars = reviews.stream().mapToInt(Review::getStars).sum();
+		        int userCount = reviews.size();
+		        double averageRating = (userCount != 0) ? (int) Math.round((double) totalStars / userCount) : 0;
+		        System.out.println(averageRating);
+
+		        model.addAttribute("averageRating", averageRating);
+				model.addAttribute("product", this.productService.findById(id));
+				model.addAttribute("reviews", this.reviewRepository.findByProdotto(product));
+				return "product.html";
 		    }
 		}
-		return "product.html";
 		
 	    
 		
@@ -88,11 +100,6 @@ public class ProductController {
 		return "products.html";
 	}
 	
-	@GetMapping("/tools")
-	public String showTools(Model model) {
-		model.addAttribute("products", this.productService.findAll());
-		return "tools.html";
-	}
 	
 	@GetMapping(value="/admin/newproduct")
 	public String formNewProduct(Model model) {
@@ -244,6 +251,24 @@ public class ProductController {
         
         return "redirect:/product";
     }
+	
+	
+//	@GetMapping(value = "/{category}")
+//	public String getCategory(@PathVariable ("category") Category category, Model model) {
+//		model.addAttribute("products", this.productRepository.findAll());
+//		model.addAttribute("category", category);
+//		
+//		return "category.html";
+//	}
+	
+
+	@GetMapping(value = "/category/{category}")
+	public String getCategory(@PathVariable("category") Category category, Model model) {
+	    Iterable<Product> products = this.productRepository.findAll();
+	    model.addAttribute("products", products);
+	    model.addAttribute("category", category);
+	    return "category.html";
+	}
 	
 	
 	

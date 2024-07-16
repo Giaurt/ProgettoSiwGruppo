@@ -13,7 +13,6 @@
 
     <link rel="stylesheet" href="/css/main-style.css"/>
     <link rel="stylesheet" href="/css/topbar.css"/>
-    <link rel="stylesheet" href="/css/login-icon.css"/>
 
     <link rel="stylesheet" href="/css/index.css"/>
 </head>
@@ -43,40 +42,32 @@
                 </form>
             </div>
         </div>
-        <div class="userInfo" th:if="${userDetails}">
-
-                <a class="login-icon" href="/profile">
-					<img  src="/images/user-white.png" style="width: 60%;">
-				</a>
+        <div class="userInfo">
+            <div th:if="${userDetails}">
+                <span th:text="${userDetails.username}"></span>
+                <a href="/logout">Logout</a>
             </div>
-            
-            
             <div th:unless="${userDetails}">
-				<a class="login-icon" href="/login">
-					<img  src="/images/login-white.png" style="width: 60%;">
-				</a>
-						 
+                <a href="/login">Login</a>
             </div>
         </div>
+    </div>
 
-
-	<div class="content">
-	    <div class="categories-container">
-	        <div class="category-box" th:each="category : ${categories}">
-	            <h1 th:text="${category}"></h1>
-	            <div th:each="product, iterStat : ${products}">
-	                <div th:if="${product.category.name() == category.name()}" th:unless="${iterStat.index > 0}">
-	                    <div class="category-img">
-	                        <img class="image" th:src="@{'data:image/jpeg;base64,' + ${product.image.generateBase64Image()}}" alt="Product Image"/>
-	                    </div>
+    <div class="content">
+    <div class="categories-container">
+        <div class="category-box" th:each="product : ${products}">
+			<h1 th:text="${product.name}"></h1>
+            <div th:if="${product.category} == ${category}">
+				<a th:href="'/products/' + ${product.id}">
+	                <div class="category-img">
+	                    <img class="image" th:src="@{'data:image/jpeg;base64,' + ${product.image.generateBase64Image()}}" alt="Product Image"/>
 	                </div>
-	            </div>
-	            <div class="category-ref">
-	                <a th:href="@{'/category/' + ${category}}">Scopri di più</a>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+				</a>
+                
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>	
 
