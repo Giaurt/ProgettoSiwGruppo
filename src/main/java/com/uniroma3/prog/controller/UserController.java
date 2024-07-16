@@ -44,21 +44,5 @@ public class UserController {
 		return "user.html";
 		
 	}
-	
-//    @GetMapping(value = "/user/{nomeUtente}")
-//    @Transactional
-//    public String getUser(@PathVariable("nomeUtente") String nomeUtente, Model model) {
-//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-//		Credentials userCredential = credentialsService.findByUsername(nomeUtente);
-//		User user = credentials.getUser();
-//		model.addAttribute("credentials", credentials);
-//		model.addAttribute("reviews", userService.getUserReview(credentials.getUsername()));
-//		return "profile.html";
-//	}
-	
-
-
-
 
 }

@@ -90,9 +90,6 @@ public class ProductController {
 				return "product.html";
 		    }
 		}
-		
-	    
-		
 	}
 	
 	@GetMapping("/products")
@@ -136,61 +133,6 @@ public class ProductController {
         return "index.html";
     }
 
-	//@GetMapping(value="/formNewReview/{id}")
-	//public String formNewIngrediente(@PathVariable Long id,Model model) {
-	//	model.addAttribute("review", new Review());
-	//	model.addAttribute("product", this.productRepository.findById(id).orElse(null));
-	//	return "formNewReview.html";
-	//}
-
-
-//	@GetMapping(value="/formNewReview/{id}")
-//	public String formNewReview(@PathVariable Long id,Model model) {
-//		model.addAttribute("review", new Review());
-//		model.addAttribute("product", this.productRepository.findById(id).orElse(null));
-//		return "formNewReview.html";
-//	}
-//	
-//	@PostMapping("/newReview/{id}")
-//	@Transactional
-//	public String newReview(@PathVariable Long id,@Valid @ModelAttribute Review review, BindingResult bindingResult, Model model) {
-//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-//		Product p=productRepository.findById(id).orElse(null);
-//		System.out.println(p.getReview());
-////		boolean b=false;
-////		for(Review r:p.getReview()) {
-////			if(r.getNomeUtente().equals(review.getNomeUtente())) {
-////				System.out.println("entraaaaaaaaaaaaaaaaaa------------------------------------------------------------");
-////				b=true;
-////			}
-////		}
-//		
-//		boolean reviewExists = p.getReview().stream()
-//		        .anyMatch(r -> r.getNomeUtente().equals(review.getNomeUtente()));
-//		
-//		if(!reviewExists) {
-//			System.out.println("entraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-//			System.out.println(review.getId());
-//			System.out.println(p.getReview());
-//			for(Review r : p.getReview()) {
-//				System.out.println(r.getId());
-//			}
-//			review.setNomeUtente(credentials.getUsername());
-//			review.setProdotto(p);
-//			this.reviewRepository.save(review);
-//			p.getReview().add(review);
-//			for(Review r : p.getReview()) {
-//				System.out.println(r.getId());
-//			}
-//			this.productRepository.save(p);
-//			return "redirect:/product/"+p.getId();
-//		}else {
-//			return "redirect:/product/"+p.getId();
-//		}
-//	}
-//>>>>>>> Stashed changes
-	
 	@GetMapping(value="/formNewReview/{id}")
 	public String formNewReview(@PathVariable Long id, Model model) {
 	    Product product = productRepository.findById(id).orElse(null);
@@ -249,9 +191,7 @@ public class ProductController {
 	        return "redirect:/products/" + product.getId();
 	    }
 	}
-	
-	
-	
+
 	@PostMapping(value = "/product/delete/{id}")
     public String deleteRicetta(@PathVariable("id") Long id) {
         
@@ -259,25 +199,13 @@ public class ProductController {
         
         return "redirect:/product";
     }
-	
-	
-//	@GetMapping(value = "/{category}")
-//	public String getCategory(@PathVariable ("category") Category category, Model model) {
-//		model.addAttribute("products", this.productRepository.findAll());
-//		model.addAttribute("category", category);
-//		
-//		return "category.html";
-//	}
-	
 
 	@GetMapping(value = "/category/{category}")
 	public String getCategory(@PathVariable("category") Category category, Model model) {
-	    Iterable<Product> products = this.productRepository.findAll();
+	    Iterable<Product> products = this.productService.searchProductsByCategory(category);
 	    model.addAttribute("products", products);
 	    model.addAttribute("category", category);
 	    return "category.html";
 	}
-	
-	
-	
+
 }
