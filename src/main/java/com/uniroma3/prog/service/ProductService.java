@@ -18,7 +18,7 @@ public class ProductService {
 	private ProductRepository productRepository;
 	@Transactional
 	public Product findById(long id) {
-		return productRepository.findById(id).get();
+		return productRepository.findById(id).orElse(null);
 	}
 	@Transactional
 	public Iterable<Product> findAll(){
@@ -34,7 +34,13 @@ public class ProductService {
 	public List<Product> searchProductsByCategory(Category category) {
 		return productRepository.findByCategoryNameContainingIgnoreCase(category.name());
 	}
-	
+
+	@Transactional
+	public void saveProduct(Product product) {
+		productRepository.save(product);
+	}
+
+	@Transactional
 	public void deleteProduct(Long productId) {
         if (productRepository.existsById(productId)) {
             productRepository.deleteById(productId);

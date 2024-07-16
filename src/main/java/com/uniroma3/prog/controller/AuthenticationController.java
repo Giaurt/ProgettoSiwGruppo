@@ -1,18 +1,12 @@
 package com.uniroma3.prog.controller;
 
-import com.uniroma3.prog.model.Category;
 import com.uniroma3.prog.model.Credentials;
 import com.uniroma3.prog.model.User;
-import com.uniroma3.prog.repository.ProductRepository;
 import com.uniroma3.prog.service.CredentialsService;
-import com.uniroma3.prog.service.ProductService;
 import com.uniroma3.prog.service.UserService;
 
-import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.ui.Model;
@@ -27,44 +21,24 @@ public class AuthenticationController {
 
     @Autowired
     private CredentialsService credentialsService;
-
     @Autowired
     private UserService userService;
-    
-    @Autowired 
-    private ProductService productService;
-    @Autowired 
-    private ProductRepository productRepository;
 
     @GetMapping(value = "/")
     public String index(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        
-        if (authentication instanceof AnonymousAuthenticationToken) {
-        	model.addAttribute("products", this.productRepository.findAll());
-            model.addAttribute("categories", Category.values());
-            return "index";
+        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Credentials credentials = credentialsService.getCredentialsByUsername(userDetails.getUsername());
+        if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+            return "redirect:/admin/index";
         }
-        else {
-            UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-            if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            	model.addAttribute("products", this.productRepository.findAll());
-                model.addAttribute("categories", Category.values());
-                return "admin/indexAdmin";
-            }else {
-            	model.addAttribute("products", this.productRepository.findAll());
-                model.addAttribute("categories", Category.values());
-                return "index.html";
-            }
-        }
+
+        return "redirect:/index";
     }
 
     @GetMapping(value = "/profile")
-    @Transactional
     public String showProfile(Model model) {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		Credentials credentials = credentialsService.getCredentialsByUsername(userDetails.getUsername());
 		User user = credentials.getUser();
 		model.addAttribute("credentials", credentials);
 		model.addAttribute("reviews", userService.getUserReview(credentials.getUsername()));
@@ -78,13 +52,7 @@ public class AuthenticationController {
 
     @GetMapping(value = "/success")
     public String defaultAfterLogin(Model model) {
-    	model.addAttribute("products", this.productService.findAll());
-        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-        if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/indexAdmin.html";
-        }
-        return "index.html";
+        return "redirect:/";
     }
 
     @GetMapping(value = "/register")
@@ -102,19 +70,20 @@ public class AuthenticationController {
              BindingResult credentialsBindingResult,
              Model model)
     {
-        if (!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
-            userService.saveUser(user);
-            credentials.setUser(user);
-            credentialsService.saveCredentials(credentials);
-            model.addAttribute("user", user);
-            return "loginForm";
+        if (credentialsService.existsByUsername(credentials.getUsername())) {
+            model.addAttribute("error", "Username already exists");
+            return "registerForm";
         }
-        return "register";
-    }
+        if (userBindingResult.hasErrors() || credentialsBindingResult.hasErrors() ) {
+            model.addAttribute("error", "Binding errors occurred");
+            return "registerForm";
+        }
 
-    @GetMapping(value = "/admin/page")
-    public String showAdminPage(Model model) {
-        return "admin/admin-page";
+        credentials.setUser(user);
+        userService.saveUser(user);
+        credentialsService.saveCredentials(credentials);
+        model.addAttribute("user", user);
+        return "register";
     }
 
 }

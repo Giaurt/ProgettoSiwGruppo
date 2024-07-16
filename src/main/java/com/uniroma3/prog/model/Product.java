@@ -19,7 +19,7 @@ public class Product {
 	private String marca;
 	@OneToOne
 	private Image image;
-	@OneToMany(mappedBy = "prodotto")
+	@OneToMany(mappedBy = "prodotto", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Review> review = new ArrayList<>();
 	
 	public Long getId() {

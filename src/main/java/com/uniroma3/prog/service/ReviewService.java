@@ -28,11 +28,15 @@ public class ReviewService {
 		return reviewRepository.findAll();
 	}
 	@Transactional
-	 public List<Review> findReviewsByProduct(Long productId) {
-	        Product product = productService.findById(productId);
-
-	        return reviewRepository.findByProdotto(product);
-	    }
+	public List<Review> findReviewsByProduct(Long productId) {
+		Product product = productService.findById(productId);
+		return reviewRepository.findByProdotto(product);
+	}
+	@Transactional
+	public void saveReview(Review review) {
+		reviewRepository.save(review);
+	}
+	@Transactional
 	public void deleteReviewById(Long id) {
         reviewRepository.deleteById(id);
     }

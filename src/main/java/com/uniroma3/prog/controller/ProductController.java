@@ -35,69 +35,44 @@ import static com.uniroma3.prog.model.Credentials.ADMIN_ROLE;
 public class ProductController {
 
 	@Autowired ProductService productService;
-	@Autowired ProductRepository productRepository;
 	@Autowired ImageRepository imageRepository;
 	@Autowired ReviewRepository reviewRepository;
 	@Autowired ReviewService reviewService;
 	@Autowired CredentialsService credentialsService;
-	
+
+	@GetMapping(value = "/index")
+	public String showIndex(Model model) {
+		model.addAttribute("products", this.productService.findAll());
+		return "index";
+	}
+
+	@GetMapping(value = "/admin/index")
+	public String showAdminIndex(Model model) {
+		model.addAttribute("products", this.productService.findAll());
+		return "admin/indexAdmin";
+	}
 
 	@GetMapping("/products/{id}")
 	public String getProduct(@PathVariable("id")Long id, Model model) {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		if (authentication instanceof AnonymousAuthenticationToken) {
-			Product product = productService.findById(id);
-			List<Review> reviews = reviewRepository.findByProdotto(product);
+		Product product = productService.findById(id);
+		List<Review> reviews = reviewRepository.findByProdotto(product);
 
-	        int totalStars = reviews.stream().mapToInt(Review::getStars).sum();
-	        int userCount = reviews.size();
-	        double averageRating = (userCount != 0) ? (int) Math.round((double) totalStars / userCount) : 0;
-	        System.out.println(averageRating);
+		int totalStars = reviews.stream().mapToInt(Review::getStars).sum();
+		int userCount = reviews.size();
+		double averageRating = (userCount != 0) ? (int) Math.round((double) totalStars / userCount) : 0;
+		System.out.println(averageRating);
 
-	        model.addAttribute("averageRating", averageRating);
-			model.addAttribute("product", this.productService.findById(id));
-			model.addAttribute("reviews", this.reviewRepository.findByProdotto(product));
-			return "product.html";
-		}else {
-			UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		    Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-		    if(credentials.getRole().equals(ADMIN_ROLE)) {
-		    	Product product = productService.findById(id);
-				List<Review> reviews = reviewRepository.findByProdotto(product);
-
-		        int totalStars = reviews.stream().mapToInt(Review::getStars).sum();
-		        int userCount = reviews.size();
-		        double averageRating = (userCount != 0) ? (int) Math.round((double) totalStars / userCount) : 0;
-		        System.out.println(averageRating);
-
-		        model.addAttribute("averageRating", averageRating);
-				model.addAttribute("product", this.productService.findById(id));
-				model.addAttribute("reviews", this.reviewRepository.findByProdotto(product));
-				return "/admin/admin-product.html";
-		    
-		    }else {
-		    	Product product = productService.findById(id);
-				List<Review> reviews = reviewRepository.findByProdotto(product);
-
-		        int totalStars = reviews.stream().mapToInt(Review::getStars).sum();
-		        int userCount = reviews.size();
-		        double averageRating = (userCount != 0) ? (int) Math.round((double) totalStars / userCount) : 0;
-		        System.out.println(averageRating);
-
-		        model.addAttribute("averageRating", averageRating);
-				model.addAttribute("product", this.productService.findById(id));
-				model.addAttribute("reviews", this.reviewRepository.findByProdotto(product));
-				return "product.html";
-		    }
+		model.addAttribute("averageRating", averageRating);
+		model.addAttribute("product", this.productService.findById(id));
+		model.addAttribute("reviews", this.reviewRepository.findByProdotto(product));
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentialsByUsername(userDetails.getUsername());
+		if (credentials.getRole().equals(ADMIN_ROLE)) {
+			return "/admin/admin-product.html";
 		}
+		return "product.html";
 	}
-	
-//	@GetMapping("/products")
-//	public String showProduct(Model model) {
-//		model.addAttribute("products", this.productService.findAll());
-//		return "products.html";
-//	}
-	
 	
 	@GetMapping(value="/admin/newproduct")
 	public String formNewProduct(Model model) {
@@ -118,7 +93,7 @@ public class ProductController {
 			} catch (Exception e) {
 				System.out.println("erroreeee");
 			}
-			this.productRepository.save(product); 
+			this.productService.saveProduct(product);
 			model.addAttribute("product", product);
 			return "product.html";
 		} else {
@@ -135,12 +110,10 @@ public class ProductController {
 
 	@GetMapping(value="/formNewReview/{id}")
 	public String formNewReview(@PathVariable Long id, Model model) {
-	    Product product = productRepository.findById(id).orElse(null);
+	    Product product = productService.findById(id);
 	    if (product == null) {
-	        // Handle product not found scenario
-	        return "redirect:/"; // or appropriate error handling
-	    }
-
+			return "redirect:/";
+		}
 	    model.addAttribute("review", new Review());
 	    model.addAttribute("product", product);
 	    return "formNewReview.html";
@@ -150,44 +123,35 @@ public class ProductController {
 	@Transactional
 	public String newReview(@PathVariable Long id, @Valid @ModelAttribute Review review, BindingResult bindingResult, Model model) {
 	    UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-	    Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+	    Credentials credentials = credentialsService.getCredentialsByUsername(userDetails.getUsername());
 	    
-	    Product product = productRepository.findById(id).orElse(null);
+	    Product product = productService.findById(id);
 	    if (product == null) {
-	        // Handle product not found scenario
-	        return "redirect:/"; // or appropriate error handling
+	        return "redirect:/";
 	    }
 
 	    if (bindingResult.hasErrors()) {
-	        // Handle validation errors appropriately
 	        model.addAttribute("product", product);
 	        return "formNewReview.html";
 	    }
 
-	    // Check if a review with the same username already exists
 	    boolean reviewExists = product.getReview().stream()
 	            .anyMatch(r -> r.getNomeUtente().equals(credentials.getUsername()));
 
 	    if (!reviewExists) {
-	        // Create new Review object and set necessary fields
 	        Review newReview = new Review();
 	        newReview.setNomeUtente(credentials.getUsername());
 	        newReview.setProdotto(product);
-	        newReview.setStars(review.getStars()); // Set other fields as needed
+	        newReview.setStars(review.getStars());
 	        newReview.setDescrizione(review.getDescrizione());
 
-	        // Add new review to the product's reviews collection
 	        product.getReview().add(newReview);
 
-	        // Save the new review
 	        reviewRepository.save(newReview);
-
-	        // Update the product to reflect the new review
-	        productRepository.save(product);
+	        productService.saveProduct(product);
 
 	        return "redirect:/products/" + product.getId();
 	    } else {
-	        // Redirect with appropriate message indicating review already exists
 	        return "redirect:/products/" + product.getId();
 	    }
 	}

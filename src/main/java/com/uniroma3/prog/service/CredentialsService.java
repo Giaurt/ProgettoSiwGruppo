@@ -7,8 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.uniroma3.prog.model.Credentials;
 import com.uniroma3.prog.repository.CredentialsRepository;
 
-import java.util.Optional;
-
 @Service
 public class CredentialsService {
 
@@ -19,27 +17,18 @@ public class CredentialsService {
     protected CredentialsRepository credentialsRepository;
 
     @Transactional
-    public Credentials getCredentials(Long id) {
-        Optional<Credentials> result = this.credentialsRepository.findById(id);
-        return result.orElse(null);
-    }
-    @Transactional
-    public Credentials findByUsername(String username) {
-    	Credentials result = new Credentials();
-    	Iterable<Credentials> iterable = this.credentialsRepository.findAll();
-    	for(Credentials c : iterable) {
-    		if(c.getUsername().equals(username)) {
-    			result = c;
-    		}
-    	}
-    	return result;
+    public Credentials getCredentialsById(Long id) {
+        return this.credentialsRepository.findById(id).orElse(null);
     }
 
+    @Transactional
+    public boolean existsByUsername(String username) {
+        return credentialsRepository.existsByUsername(username);
+    }
 
     @Transactional
-    public Credentials getCredentials(String username) {
-        Credentials result = this.findByUsername(username);
-        return result;
+    public Credentials getCredentialsByUsername(String username) {
+        return this.credentialsRepository.findByUsername(username).orElse(null);
     }
 
     @Transactional

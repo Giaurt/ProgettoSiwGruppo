@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="categories-dropdown">
-			<a href="/admin/newproduct">
+			<a href="/admin/newproduct" style="text-decoration: none;">
 				<button class="add-product-button">
 	                <h1>Aggiungi un prodotto</h1>
 	            </button>
@@ -53,19 +53,18 @@
         </div>
         <div class="userInfo" th:if="${userDetails}">
 
-                <a class="login-icon" href="/profile">
-					<img  src="/images/user-white.png" style="width: 60%;">
-				</a>
-            </div>
-            
-            
-            <div th:unless="${userDetails}">
-				<a class="login-icon" href="/login">
-					<img  src="/images/login-white.png" style="width: 60%;">
-				</a>
-						 
-            </div>
+            <a class="login-icon" href="/profile">
+                <i class="fas fa-user"></i>
+            </a>
         </div>
+        
+        
+        <div class="userInfo" th:unless="${userDetails}">
+            <a class="login-icon" href="/login">
+                <i class="fas fa-sign-in-alt"></i>
+            </a>
+        </div>
+    </div>
 
 
 	<div class="content">

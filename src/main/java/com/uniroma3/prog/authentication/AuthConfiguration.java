@@ -49,7 +49,6 @@ public class AuthConfiguration {
         httpSecurity
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/", "/index","/category/**", "/register","/products","/products/**","/product/**","/search/**", "/css/**").permitAll()
-
                 .requestMatchers(HttpMethod.POST, "/register","/product","/search/**", "/login").permitAll()
                 .requestMatchers(HttpMethod.GET,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
                 .requestMatchers(HttpMethod.POST,"/admin/**").hasAnyAuthority(ADMIN_ROLE)
